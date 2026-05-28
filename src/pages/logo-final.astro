@@ -1,0 +1,196 @@
+---
+---
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Solo Cruisers — Logo Preview</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Pacifico&display=swap" rel="stylesheet" />
+<style>
+  :root{--navy:#173a5e;--coral1:#ff9e5e;--coral2:#ff5e62;--red:#e5443b;--teal:#46bcd0;--teal2:#7ad4e2;--cream:#f4fbfc;--line:#dfeef1;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;}
+  body{font-family:'Poppins',sans-serif;background:#e8f3f5;color:var(--navy);padding:2.5rem 2rem 5rem;}
+  .head{text-align:center;max-width:900px;margin:0 auto 2rem;}
+  .head h1{font-size:1.6rem;font-weight:800;}
+  .head p{font-weight:700;color:#5a7a86;font-size:.85rem;margin-top:.4rem;letter-spacing:.03em;}
+  .grid{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+  .panel{border-radius:16px;overflow:hidden;border:1px solid var(--line);}
+  .panel .cap{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:#7a96a0;padding:.7rem 1rem;background:#fff;border-bottom:1px solid var(--line);font-weight:700;}
+  .stage{display:flex;align-items:center;justify-content:center;padding:2.6rem 1.5rem;}
+  .stage.light{background:#fff;} .stage.tint{background:#eaf7fa;} .stage.navy{background:var(--navy);} .stage.teal{background:var(--teal);}
+  .full{grid-column:1 / -1;}
+
+  /* primary stacked lockup */
+  .logo{display:flex;flex-direction:column;align-items:center;gap:.4rem;}
+  .logo .emblem{width:150px;height:135px;}
+  .solo{display:flex;align-items:center;gap:.04em;font-weight:800;font-size:3.1rem;line-height:.9;color:var(--navy);letter-spacing:.01em;}
+  .solo .buoy{width:.92em;height:.92em;margin-left:.02em;}
+  .cru{font-family:'Pacifico',cursive;font-size:1.85rem;color:var(--navy);margin-top:-.1em;font-weight:400;}
+  .navy .solo,.navy .cru{color:#fff;}
+  .teal .solo,.teal .cru{color:#fff;}
+
+  /* horizontal lockup */
+  .logo.row{flex-direction:row;gap:1rem;}
+  .logo.row .emblem{width:84px;height:76px;}
+  .logo.row .txt{display:flex;flex-direction:column;align-items:flex-start;}
+  .logo.row .solo{font-size:2.2rem;}
+  .logo.row .cru{font-size:1.3rem;margin-top:-.15em;}
+
+  /* favicons */
+  .favs{display:flex;align-items:flex-end;gap:1.6rem;justify-content:center;flex-wrap:wrap;}
+  .fw{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+  .fav{display:flex;align-items:center;justify-content:center;}
+  .fav.s64{width:64px;height:64px;} .fav.s32{width:32px;height:32px;} .fav.s16{width:16px;height:16px;}
+  .pl{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#7a96a0;font-weight:700;}
+  .divv{width:1px;height:54px;background:var(--line);}
+
+  /* palette */
+  .sw{display:flex;gap:.8rem;flex-wrap:wrap;padding:1.4rem;}
+  .chip{width:96px;border-radius:10px;overflow:hidden;border:1px solid var(--line);font-size:.62rem;}
+  .chip .c{height:54px;} .chip .l{padding:6px 8px;font-weight:700;background:#fff;}
+  .chip .l b{display:block;font-size:.7rem;}
+</style>
+</head>
+<body>
+<div class="head">
+  <h1>Solo Cruisers — Vector Logo</h1>
+  <p>ORIGINAL RECREATION · CRISP SVG · YOUR ARTWORK, REBUILT TO OWN &amp; EDIT</p>
+</div>
+
+<!-- DEFS -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <radialGradient id="sun" cx="50%" cy="42%" r="62%">
+    <stop offset="0" stop-color="#ffd27a"/><stop offset=".5" stop-color="#ff9e5e"/><stop offset="1" stop-color="#ff5e62"/>
+  </radialGradient>
+
+  <!-- lifebuoy "O" -->
+  <symbol id="buoy" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="46" fill="#fff"/>
+    <circle cx="50" cy="50" r="34" fill="none" stroke="#fff" stroke-width="22"/>
+    <g transform="rotate(45 50 50)">
+      <circle cx="50" cy="50" r="34" fill="none" stroke="#e5443b" stroke-width="22" stroke-dasharray="26.7 26.7"/>
+    </g>
+    <circle cx="50" cy="50" r="45" fill="none" stroke="#173a5e" stroke-width="3"/>
+    <circle cx="50" cy="50" r="23" fill="none" stroke="#173a5e" stroke-width="3"/>
+  </symbol>
+
+  <!-- tiny ship for favicon center -->
+  <symbol id="miniship" viewBox="0 0 100 100">
+    <path d="M28 60 H72 L68 70 Q67 74 61 74 H39 Q33 74 32 70 Z" fill="#fff" stroke="#173a5e" stroke-width="2.4"/>
+    <rect x="38" y="48" width="24" height="12" fill="#fff" stroke="#173a5e" stroke-width="2.4"/>
+    <rect x="46" y="40" width="9" height="8" fill="#ff7a4d" stroke="#173a5e" stroke-width="2"/>
+    <circle cx="44" cy="54" r="1.6" fill="#173a5e"/><circle cx="50" cy="54" r="1.6" fill="#173a5e"/><circle cx="56" cy="54" r="1.6" fill="#173a5e"/>
+  </symbol>
+
+  <!-- full emblem scene -->
+  <symbol id="emblem" viewBox="0 0 200 180">
+    <circle cx="100" cy="84" r="80" fill="none" stroke="#cfeaf0" stroke-width="2"/>
+    <!-- birds -->
+    <path d="M58 50 q6 -6 12 0 q6 -6 12 0" fill="none" stroke="#173a5e" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M118 44 q5 -5 10 0 q5 -5 10 0" fill="none" stroke="#173a5e" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M92 34 q4 -4 8 0 q4 -4 8 0" fill="none" stroke="#173a5e" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- sun -->
+    <circle cx="100" cy="74" r="30" fill="url(#sun)"/>
+    <g stroke="#ff8a5b" stroke-width="2.4" stroke-linecap="round">
+      <line x1="100" y1="34" x2="100" y2="40"/>
+      <line x1="78" y1="44" x2="82" y2="49"/>
+      <line x1="122" y1="44" x2="118" y2="49"/>
+    </g>
+    <!-- ship -->
+    <g>
+      <rect x="84" y="84" width="9" height="13" rx="2" fill="#ff7a4d" stroke="#173a5e" stroke-width="3"/>
+      <rect x="104" y="84" width="9" height="13" rx="2" fill="#ff7a4d" stroke="#173a5e" stroke-width="3"/>
+      <rect x="82" y="96" width="36" height="11" fill="#fff" stroke="#173a5e" stroke-width="3"/>
+      <path d="M55 107 H145 L141 121 Q140 128 131 128 H69 Q60 128 59 121 Z" fill="#fff" stroke="#173a5e" stroke-width="3"/>
+      <g fill="#173a5e"><circle cx="74" cy="114" r="2.3"/><circle cx="88" cy="114" r="2.3"/><circle cx="100" cy="114" r="2.3"/><circle cx="112" cy="114" r="2.3"/><circle cx="126" cy="114" r="2.3"/></g>
+    </g>
+    <!-- waves -->
+    <path d="M40 138 q9 -7 18 0 t18 0 t18 0 t18 0 t18 0" fill="none" stroke="#46bcd0" stroke-width="3.4" stroke-linecap="round"/>
+    <path d="M49 148 q9 -6 18 0 t18 0 t18 0 t18 0" fill="none" stroke="#7ad4e2" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- favicon: teal rounded square + buoy + ship -->
+  <symbol id="favi" viewBox="0 0 100 100">
+    <rect x="0" y="0" width="100" height="100" rx="24" fill="#46bcd0"/>
+    <g transform="translate(50 50) scale(0.86) translate(-50 -50)">
+      <use href="#buoy"/>
+      <g transform="translate(50 50) scale(0.5) translate(-50 -50)"><use href="#miniship"/></g>
+    </g>
+  </symbol>
+
+  <!-- favicon simplified (buoy only) for tiny sizes -->
+  <symbol id="faviS" viewBox="0 0 100 100">
+    <rect x="0" y="0" width="100" height="100" rx="24" fill="#46bcd0"/>
+    <g transform="translate(50 50) scale(0.92) translate(-50 -50)"><use href="#buoy"/></g>
+  </symbol>
+</defs></svg>
+
+<div class="grid">
+  <div class="panel full">
+    <div class="cap">Primary logo · on white</div>
+    <div class="stage light">
+      <div class="logo">
+        <svg class="emblem" viewBox="0 0 200 180"><use href="#emblem"/></svg>
+        <div class="solo">SOL<svg class="buoy" viewBox="0 0 100 100"><use href="#buoy"/></svg></div>
+        <div class="cru">Cruisers</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="cap">On soft tint</div>
+    <div class="stage tint">
+      <div class="logo">
+        <svg class="emblem" viewBox="0 0 200 180"><use href="#emblem"/></svg>
+        <div class="solo">SOL<svg class="buoy" viewBox="0 0 100 100"><use href="#buoy"/></svg></div>
+        <div class="cru">Cruisers</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="cap">Horizontal lockup</div>
+    <div class="stage light">
+      <div class="logo row">
+        <svg class="emblem" viewBox="0 0 200 180"><use href="#emblem"/></svg>
+        <div class="txt">
+          <div class="solo">SOL<svg class="buoy" viewBox="0 0 100 100"><use href="#buoy"/></svg></div>
+          <div class="cru">Cruisers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel full">
+    <div class="cap">Favicon / app icon · full and simplified (for 16px)</div>
+    <div class="stage light">
+      <div class="favs">
+        <div class="fw"><svg class="fav s64" viewBox="0 0 100 100"><use href="#favi"/></svg><span class="pl">64</span></div>
+        <div class="fw"><svg class="fav s32" viewBox="0 0 100 100"><use href="#favi"/></svg><span class="pl">32</span></div>
+        <div class="fw"><svg class="fav s16" viewBox="0 0 100 100"><use href="#favi"/></svg><span class="pl">16 (full)</span></div>
+        <div class="divv"></div>
+        <div class="fw"><svg class="fav s64" viewBox="0 0 100 100"><use href="#faviS"/></svg><span class="pl">64</span></div>
+        <div class="fw"><svg class="fav s32" viewBox="0 0 100 100"><use href="#faviS"/></svg><span class="pl">32</span></div>
+        <div class="fw"><svg class="fav s16" viewBox="0 0 100 100"><use href="#faviS"/></svg><span class="pl">16 (simple)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel full">
+    <div class="cap">Palette</div>
+    <div class="stage light" style="padding:0">
+      <div class="sw">
+        <div class="chip"><div class="c" style="background:#173a5e"></div><div class="l"><b>Navy</b>#173A5E</div></div>
+        <div class="chip"><div class="c" style="background:linear-gradient(135deg,#ffd27a,#ff9e5e,#ff5e62)"></div><div class="l"><b>Sun</b>coral/orange</div></div>
+        <div class="chip"><div class="c" style="background:#e5443b"></div><div class="l"><b>Buoy Red</b>#E5443B</div></div>
+        <div class="chip"><div class="c" style="background:#46bcd0"></div><div class="l"><b>Teal</b>#46BCD0</div></div>
+        <div class="chip"><div class="c" style="background:#7ad4e2"></div><div class="l"><b>Sky</b>#7AD4E2</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
