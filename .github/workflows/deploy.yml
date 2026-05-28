@@ -28,4 +28,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 8dbea82fd02e7e24c44dab2794ba6c05
-          command: pages deploy dist --project-name=thesolocruisers --branch=${{ github.ref_name }}
+          command: pages deploy dist/client --project-name=thesolocruisers --branch=${{ github.ref_name }}
