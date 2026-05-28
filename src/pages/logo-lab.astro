@@ -2,28 +2,31 @@
 const concepts = [
   {
     id: 1,
-    name: "Porthole Horizon",
-    desc: "A ship's porthole framing a sun setting into the sea. Premium, warm, instantly 'cruise'. The single sun = the solo traveler.",
+    name: "The Wake",
+    tag: "Sail Solo",
+    desc: "A top-down view: one dot (you) leaving a V-shaped wake. Literally 'one traveler, making waves.' Abstract, ownable, and razor-clear at 16px. Nothing else in cruising looks like it.",
+    unique: "No known cruise/travel brand uses a top-down wake mark.",
   },
   {
     id: 2,
-    name: "The Lone Anchor",
-    desc: "A refined, slim anchor — the classic maritime mark. Timeless and trustworthy. 'Lone' nods to solo travel.",
+    name: "The Solo Liner",
+    tag: "Sail Solo",
+    desc: "A clean, geometric front-view ship on a single wave — echoes the ship in the OTGG emblem, but stripped to ONE vessel = solo. Deliberately avoids crown/anchor (Royal Caribbean) and any heraldry.",
+    unique: "Simplified geometric hull; not the detailed/heraldic style of major lines.",
   },
   {
     id: 3,
-    name: "The Tideline",
-    desc: "Two minimal flowing waves, brass over teal. Modern, editorial, calm. Pairs beautifully with the Fraunces wordmark.",
+    name: "SC Monogram",
+    tag: "Sail Solo",
+    desc: "An interlocked 'S·C' set in the OTGG open-bottom ring with a single wave. The heritage / luxury-boutique option — reads as a clear sub-brand of Off the Grid.",
+    unique: "Custom letterform pairing; generic monograms aren't protectable, this combo is ours.",
   },
   {
     id: 4,
-    name: "Compass Star",
-    desc: "A nautical compass star — finding your own way. Adventurous and distinctive; reads great as a tiny favicon.",
-  },
-  {
-    id: 5,
-    name: 'Monogram "S"',
-    desc: "An elegant Fraunces 'S' in a brass ring with a single wave. The most 'luxury boutique' / heritage option.",
+    name: "Family Crest",
+    tag: "Sail Solo",
+    desc: "Maximum cohesion with the parent brand: the OTGG gold open-ring, the ✦ sparkle from Off the Grid Solutions, and a single wave. Instantly 'part of the family,' unique to Solo Cruisers.",
+    unique: "Ties the ✦ family motif + ring; distinct from all flagged cruise marks.",
   },
 ];
 ---
@@ -31,99 +34,107 @@ const concepts = [
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Logo Concepts — The Solo Cruisers</title>
+  <title>Logo Concepts v2 — The Solo Cruisers</title>
   <meta name="robots" content="noindex" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root{--ink:#14233b;--cream:#faf6ef;--brass:#b8893f;--brass2:#c8a14e;--teal:#2c7a8c;--muted:#6f6f68;--line:#e3dccf;}
+    :root{--ink:#101d33;--ink2:#16263f;--cream:#faf6ef;--gold:#c8a14e;--gold2:#e7c66b;--teal:#2c7a8c;--muted:#6f6f68;--line:#e3dccf;}
     *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Inter',sans-serif;background:#ece4d6;color:var(--ink);padding:3rem 2rem 5rem;}
-    .head{max-width:1100px;margin:0 auto 2.5rem;text-align:center;}
-    .head h1{font-family:'Fraunces',serif;font-weight:600;font-size:2.4rem;}
-    .head p{color:var(--muted);margin-top:.5rem;}
-    .grid{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:1.6rem;}
-    .card{background:var(--cream);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:300px 1fr;}
-    .card .info{padding:1.8rem;border-right:1px solid var(--line);}
-    .num{font-family:'Fraunces',serif;font-size:.9rem;color:var(--brass);font-weight:600;letter-spacing:.1em;}
-    .info h2{font-family:'Fraunces',serif;font-weight:600;font-size:1.5rem;margin:.3rem 0 .7rem;}
-    .info p{font-size:.9rem;color:var(--muted);line-height:1.6;}
+    body{font-family:'Inter',sans-serif;background:#e7ddcc;color:var(--ink);padding:2.5rem 2rem 5rem;}
+    .head{max-width:1120px;margin:0 auto 1.4rem;text-align:center;}
+    .head h1{font-family:'Fraunces',serif;font-weight:600;font-size:2.3rem;}
+    .head p{color:var(--muted);margin-top:.5rem;font-size:.95rem;}
+    .ref{max-width:1120px;margin:0 auto 2rem;background:var(--ink);border-radius:14px;padding:1.4rem 1.8rem;display:flex;align-items:center;gap:1.5rem;}
+    .ref img{height:64px;width:auto;}
+    .ref .rt{color:var(--cream);}
+    .ref .rt b{font-family:'Fraunces',serif;font-weight:600;}
+    .ref .rt span{display:block;color:rgba(255,255,255,.6);font-size:.82rem;margin-top:.25rem;}
+    .grid{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:1.4rem;}
+    .card{background:var(--cream);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:280px 1fr;}
+    .info{padding:1.6rem;border-right:1px solid var(--line);}
+    .num{font-family:'Fraunces',serif;font-size:.85rem;color:var(--gold);font-weight:600;letter-spacing:.08em;}
+    .info h2{font-family:'Fraunces',serif;font-weight:600;font-size:1.4rem;margin:.25rem 0 .6rem;}
+    .info p{font-size:.85rem;color:var(--muted);line-height:1.55;}
+    .info .chk{display:block;margin-top:.7rem;font-size:.75rem;color:var(--teal);font-weight:600;}
     .renders{display:grid;grid-template-columns:1fr 1fr;}
-    .panel{padding:2rem 1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;}
+    .panel{padding:1.8rem 1.4rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.3rem;}
     .panel.light{background:var(--cream);}
     .panel.dark{background:var(--ink);}
-    .lockup{display:flex;align-items:center;gap:14px;}
+    .lockup{display:flex;align-items:center;gap:13px;}
     .lockup .mark{width:46px;height:46px;flex:0 0 46px;}
-    .wm{display:flex;flex-direction:column;line-height:1.05;white-space:nowrap;}
-    .wm .t{font-family:'Fraunces',serif;font-weight:600;font-size:1.3rem;letter-spacing:-.01em;}
-    .wm .tag{font-family:'Inter',sans-serif;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;margin-top:5px;}
-    .light .wm .t{color:var(--ink);} .light .wm .tag{color:var(--brass);}
-    .dark .wm .t{color:var(--cream);} .dark .wm .tag{color:var(--brass2);}
-    .favs{display:flex;align-items:flex-end;gap:14px;}
-    .fav{border-radius:8px;display:flex;align-items:center;justify-content:center;}
-    .fav.s32{width:32px;height:32px;border-radius:7px;} .fav.s16{width:16px;height:16px;border-radius:4px;}
+    .wm{display:flex;flex-direction:column;line-height:1.04;white-space:nowrap;}
+    .wm .t{font-family:'Fraunces',serif;font-weight:600;font-size:1.28rem;letter-spacing:-.01em;}
+    .wm .sub{display:flex;align-items:center;gap:6px;margin-top:5px;}
+    .wm .sub::before,.wm .sub::after{content:"";height:1px;width:16px;background:var(--gold);}
+    .wm .sub span{font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);}
+    .light .wm .t{color:var(--ink);} .dark .wm .t{color:var(--cream);}
+    .favs{display:flex;align-items:flex-end;gap:13px;}
+    .favwrap{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+    .fav{border-radius:7px;display:flex;align-items:center;justify-content:center;}
+    .fav.s32{width:32px;height:32px;} .fav.s16{width:16px;height:16px;border-radius:4px;}
     .fav.bgink{background:var(--ink);} .fav.bgcream{background:var(--cream);border:1px solid var(--line);}
-    .fav svg{width:72%;height:72%;}
-    .plabel{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+    .fav svg{width:74%;height:74%;}
+    .plabel{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
     .dark .plabel{color:rgba(255,255,255,.5);}
-    .favwrap{display:flex;flex-direction:column;align-items:center;gap:.6rem;}
   </style>
 </head>
 <body>
   <div class="head">
-    <h1>Logo &amp; Favicon Concepts</h1>
-    <p>The Solo Cruisers · 5 directions, shown on light + dark, with favicons at true 32px &amp; 16px</p>
+    <h1>Logo &amp; Favicon — Off the Grid Family Edition</h1>
+    <p>4 original directions · gold gradient + open-ring + "— subtitle —" to match the parent brand · checked against famous cruise marks</p>
+  </div>
+
+  <div class="ref">
+    <svg width="64" height="62" viewBox="0 0 64 62" aria-label="Off the Grid Getaways emblem impression">
+      <path d="M52 48 A24 24 0 1 0 12 48" fill="none" stroke="url(#gold)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M32 10 L40 24 L24 24 Z" fill="url(#gold)"/>
+      <path d="M20 30 L44 30 L40 40 L24 40 Z" fill="url(#gold)"/>
+      <path d="M16 46 q5 -3.5 10 0 t10 0 t10 0" fill="none" stroke="url(#gold)" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    <div class="rt"><b>Parent brand: Off the Grid Getaways</b><span>Gold gradient · open circular ring · travel iconography (mountain · ship · waves). The Solo Cruisers marks below borrow this DNA but simplify to a single 'solo' element.</span></div>
   </div>
 
   <div class="grid">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#f0d684"/><stop offset=".5" stop-color="#c8a14e"/><stop offset="1" stop-color="#936729"/>
+      </linearGradient>
 
-    <!-- ============ MARK DEFINITIONS (reused via <use>) ============ -->
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-      <defs>
-        <!-- 1. Porthole Horizon -->
-        <g id="m1">
-          <clipPath id="clip1"><circle cx="32" cy="32" r="23"/></clipPath>
-          <g clip-path="url(#clip1)">
-            <rect x="0" y="0" width="64" height="64" fill="#fbf2e0"/>
-            <circle cx="32" cy="33" r="10" fill="var(--brass)"/>
-            <rect x="0" y="37" width="64" height="30" fill="var(--teal)"/>
-            <path d="M2 45 q7 -4 14 0 t14 0 t14 0 t14 0" fill="none" stroke="#fbf2e0" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
-            <path d="M2 52 q7 -4 14 0 t14 0 t14 0 t14 0" fill="none" stroke="#fbf2e0" stroke-width="1.6" stroke-linecap="round" opacity=".5"/>
-          </g>
-          <circle cx="32" cy="32" r="23" fill="none" stroke="var(--brass)" stroke-width="3.5"/>
-        </g>
+      <!-- 1. The Wake -->
+      <g id="m1">
+        <path d="M30 27 L14 52" fill="none" stroke="url(#gold)" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M34 27 L50 52" fill="none" stroke="url(#gold)" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M31 31 L23 50" fill="none" stroke="url(#gold)" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+        <path d="M33 31 L41 50" fill="none" stroke="url(#gold)" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+        <circle cx="32" cy="20" r="6" fill="url(#gold)"/>
+      </g>
 
-        <!-- 2. Lone Anchor -->
-        <g id="m2" fill="none" stroke="var(--brass)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="32" cy="13" r="4.2"/>
-          <path d="M32 17 V50"/>
-          <path d="M23 24 H41"/>
-          <path d="M14 37 a18 18 0 0 0 36 0"/>
-          <path d="M14 37 l-4 -3 M14 37 l1 -5"/>
-          <path d="M50 37 l4 -3 M50 37 l-1 -5"/>
-        </g>
+      <!-- 2. The Solo Liner -->
+      <g id="m2">
+        <rect x="28" y="15" width="8" height="7" rx="1.5" fill="url(#gold)"/>
+        <rect x="22" y="22" width="20" height="6" rx="1.5" fill="url(#gold)"/>
+        <path d="M16 30 L48 30 L42 43 L22 43 Z" fill="url(#gold)"/>
+        <circle cx="27" cy="36" r="1.7" fill="var(--cream)"/><circle cx="32" cy="36" r="1.7" fill="var(--cream)"/><circle cx="37" cy="36" r="1.7" fill="var(--cream)"/>
+        <path d="M12 48 q6 -4.5 12 0 t12 0 t12 0" fill="none" stroke="url(#gold)" stroke-width="2.6" stroke-linecap="round"/>
+      </g>
 
-        <!-- 3. Tideline -->
-        <g id="m3" fill="none" stroke-linecap="round" stroke-width="4.6">
-          <path d="M9 26 q7.5 -9 15 0 t15 0" stroke="var(--brass)"/>
-          <path d="M9 40 q7.5 -9 15 0 t15 0" stroke="var(--teal)"/>
-        </g>
+      <!-- 3. SC Monogram -->
+      <g id="m3">
+        <path d="M51 44 A22 22 0 1 0 13 44" fill="none" stroke="url(#gold)" stroke-width="3" stroke-linecap="round"/>
+        <text x="26" y="40" text-anchor="middle" font-family="Fraunces, serif" font-size="26" font-weight="600" fill="url(#gold)">S</text>
+        <text x="39" y="40" text-anchor="middle" font-family="Fraunces, serif" font-size="26" font-weight="600" fill="url(#gold)" opacity=".92">C</text>
+        <path d="M24 49 q8 -5 16 0" fill="none" stroke="var(--teal)" stroke-width="2.2" stroke-linecap="round"/>
+      </g>
 
-        <!-- 4. Compass Star -->
-        <g id="m4">
-          <path d="M32 5 L37 27 L59 32 L37 37 L32 59 L27 37 L5 32 L27 27 Z" fill="var(--brass)"/>
-          <circle cx="32" cy="32" r="4.4" fill="var(--ink)"/>
-        </g>
-
-        <!-- 5. Monogram S -->
-        <g id="m5">
-          <circle cx="32" cy="32" r="27" fill="none" stroke="var(--brass)" stroke-width="3"/>
-          <text x="32" y="40" text-anchor="middle" font-family="Fraunces, serif" font-size="30" font-weight="600" fill="var(--brass)">S</text>
-          <path d="M22 48 q5 -4 10 0 t10 0" fill="none" stroke="var(--teal)" stroke-width="2.4" stroke-linecap="round"/>
-        </g>
-      </defs>
-    </svg>
+      <!-- 4. Family Crest -->
+      <g id="m4">
+        <path d="M50 45 A21 21 0 1 0 14 45" fill="none" stroke="url(#gold)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M32 17 L34.5 26 L43 28 L34.5 30 L32 39 L29.5 30 L21 28 L29.5 26 Z" fill="url(#gold)"/>
+        <path d="M21 43 q5.5 -4 11 0 t11 0" fill="none" stroke="url(#gold)" stroke-width="2.4" stroke-linecap="round"/>
+      </g>
+    </defs></svg>
 
     {concepts.map((c) => (
       <div class="card">
@@ -131,38 +142,27 @@ const concepts = [
           <div class="num">CONCEPT 0{c.id}</div>
           <h2>{c.name}</h2>
           <p>{c.desc}</p>
+          <span class="chk">✓ {c.unique}</span>
         </div>
         <div class="renders">
           <div class="panel light">
             <div class="lockup">
               <svg class="mark" viewBox="0 0 64 64"><use href={`#m${c.id}`} /></svg>
-              <div class="wm"><span class="t">The Solo Cruisers</span><span class="tag">Sail Solo, Explore Together</span></div>
+              <div class="wm"><span class="t">The Solo Cruisers</span><span class="sub"><span>{c.tag}</span></span></div>
             </div>
             <div class="favs">
-              <div class="favwrap">
-                <div class="fav s32 bgink"><svg viewBox="0 0 64 64"><use href={`#m${c.id}`} /></svg></div>
-                <span class="plabel">32px</span>
-              </div>
-              <div class="favwrap">
-                <div class="fav s16 bgink"><svg viewBox="0 0 64 64"><use href={`#m${c.id}`} /></svg></div>
-                <span class="plabel">16px</span>
-              </div>
+              <div class="favwrap"><div class="fav s32 bgink"><svg viewBox="0 0 64 64"><use href={`#m${c.id}`} /></svg></div><span class="plabel">32</span></div>
+              <div class="favwrap"><div class="fav s16 bgink"><svg viewBox="0 0 64 64"><use href={`#m${c.id}`} /></svg></div><span class="plabel">16</span></div>
             </div>
           </div>
           <div class="panel dark">
             <div class="lockup">
               <svg class="mark" viewBox="0 0 64 64"><use href={`#m${c.id}`} /></svg>
-              <div class="wm"><span class="t">The Solo Cruisers</span><span class="tag">Sail Solo, Explore Together</span></div>
+              <div class="wm"><span class="t">The Solo Cruisers</span><span class="sub"><span>{c.tag}</span></span></div>
             </div>
             <div class="favs">
-              <div class="favwrap">
-                <div class="fav s32 bgcream"><svg viewBox="0 0 64 64"><use href={`#m${c.id}`} /></svg></div>
-                <span class="plabel">32px</span>
-              </div>
-              <div class="favwrap">
-                <div class="fav s16 bgcream"><svg viewBox="0 0 64 64"><use href={`#m${c.id}`} /></svg></div>
-                <span class="plabel">16px</span>
-              </div>
+              <div class="favwrap"><div class="fav s32 bgcream"><svg viewBox="0 0 64 64"><use href={`#m${c.id}`} /></svg></div><span class="plabel">32</span></div>
+              <div class="favwrap"><div class="fav s16 bgcream"><svg viewBox="0 0 64 64"><use href={`#m${c.id}`} /></svg></div><span class="plabel">16</span></div>
             </div>
           </div>
         </div>
