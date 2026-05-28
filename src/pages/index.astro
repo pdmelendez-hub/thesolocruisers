@@ -2,83 +2,896 @@
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
-		<title>The Solo Cruisers — Coming Soon</title>
-		<style>
-			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+  <title>The Solo Cruisers — Travel Solo, Never Alone.</title>
+  <meta name="description" content="Solo cruises for single adults. Meet fun-loving travelers, enjoy hosted events, and explore the world — without the single supplement stress." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-			body {
-				min-height: 100vh;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				background: #0a1628;
-				color: #fff;
-				font-family: Georgia, 'Times New Roman', serif;
-				text-align: center;
-				padding: 2rem;
-			}
+    :root {
+      --navy: #0d1f3c;
+      --navy-light: #1a3460;
+      --teal: #0e8fa0;
+      --teal-light: #14b8ce;
+      --gold: #e8a020;
+      --white: #ffffff;
+      --off-white: #f4f8fa;
+      --text: #1a2a3a;
+      --text-muted: #5a7080;
+      --border: #d0e4ec;
+    }
 
-			.container {
-				max-width: 600px;
-			}
+    html { scroll-behavior: smooth; }
 
-			.anchor {
-				font-size: 3rem;
-				margin-bottom: 1.5rem;
-				display: block;
-			}
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+    }
 
-			h1 {
-				font-size: clamp(2rem, 5vw, 3.5rem);
-				font-weight: normal;
-				letter-spacing: 0.02em;
-				margin-bottom: 0.5rem;
-				color: #fff;
-			}
+    /* ── PROMO BANNER ── */
+    .promo-banner {
+      background: var(--teal);
+      color: var(--white);
+      text-align: center;
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+    .promo-banner strong { color: var(--gold); }
 
-			.tagline {
-				font-size: 1.1rem;
-				color: #7ab8d4;
-				letter-spacing: 0.15em;
-				text-transform: uppercase;
-				margin-bottom: 2.5rem;
-			}
+    /* ── HEADER ── */
+    header {
+      background: var(--navy);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
 
-			.divider {
-				width: 60px;
-				height: 2px;
-				background: #7ab8d4;
-				margin: 0 auto 2.5rem;
-			}
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      height: 70px;
+    }
 
-			p {
-				font-size: 1.1rem;
-				line-height: 1.8;
-				color: #b0c8d8;
-			}
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      text-decoration: none;
+    }
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--white);
+      font-weight: 700;
+    }
+    .logo-tagline {
+      font-size: 0.65rem;
+      color: var(--teal-light);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
 
-			.waves {
-				margin-top: 3rem;
-				font-size: 1.5rem;
-				letter-spacing: 0.5rem;
-				opacity: 0.4;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<span class="anchor">⚓</span>
-			<h1>The Solo Cruisers</h1>
-			<p class="tagline">Setting Sail Solo</p>
-			<div class="divider"></div>
-			<p>Something exciting is on the horizon.<br />We're preparing to set sail — check back soon.</p>
-			<div class="waves">〰 〰 〰</div>
-		</div>
-	</body>
+    nav { display: flex; align-items: center; gap: 0.25rem; }
+    nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    nav a:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+
+    .header-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      white-space: nowrap;
+    }
+    .header-contact a { color: var(--gold); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, #1a4a6e 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(14,143,160,0.15)' d='M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,186.7C672,192,768,160,864,138.7C960,117,1056,107,1152,117.3C1248,128,1344,160,1392,176L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E") no-repeat bottom;
+      background-size: cover;
+    }
+    .hero-content { position: relative; max-width: 700px; margin: 0 auto; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(232,160,32,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,160,32,0.5); }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 4rem 2rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    /* ── FILTERS ── */
+    .filters-section {
+      background: var(--off-white);
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .filters-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .filters-inner label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-right: -0.5rem; }
+    .filters-inner select {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: var(--text);
+      background: var(--white);
+      cursor: pointer;
+      appearance: none;
+      padding-right: 2rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235a7080' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+    }
+    .filters-inner select:focus { outline: 2px solid var(--teal); }
+
+    /* ── CRUISE GRID ── */
+    .cruises-section { background: var(--white); }
+    .cruise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .cruise-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      background: var(--white);
+    }
+    .cruise-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+
+    .cruise-card-img {
+      height: 180px;
+      background: linear-gradient(135deg, var(--navy-light), var(--teal));
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .cruise-card-img .destination-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: rgba(255,255,255,0.15);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+    }
+    .cruise-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--teal);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 50px;
+    }
+    .cruise-card-body { padding: 1.25rem; }
+    .cruise-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .cruise-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .cruise-meta span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: var(--off-white);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+    .cruise-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .cruise-price { font-weight: 700; color: var(--navy); font-size: 0.95rem; }
+    .cruise-price small { font-size: 0.7rem; color: var(--text-muted); font-weight: 400; display: block; }
+    .btn-book {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-book:hover { background: var(--teal); }
+
+    /* ── FEATURES ── */
+    .features-section { background: var(--navy); color: var(--white); }
+    .features-section .section-title { color: var(--white); }
+    .features-section .section-subtitle { color: rgba(255,255,255,0.65); }
+    .features-section .section-label { color: var(--teal-light); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+    .feature-card p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+    /* ── CTA STRIP ── */
+    .cta-strip {
+      background: var(--teal);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .cta-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-strip p { color: rgba(255,255,255,0.85); font-size: 1rem; margin-bottom: 1.75rem; }
+    .btn-cta {
+      display: inline-block;
+      background: var(--white);
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: transform 0.2s;
+    }
+    .btn-cta:hover { transform: translateY(-2px); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { background: var(--off-white); }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      color: var(--teal);
+      opacity: 0.2;
+      position: absolute;
+      top: 0.5rem;
+      left: 1rem;
+      line-height: 1;
+    }
+    .testimonial-card p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    .testimonial-author { font-weight: 600; font-size: 0.85rem; color: var(--navy); }
+    .stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 0.5rem; }
+
+    /* ── EMAIL SIGNUP ── */
+    .signup-section { background: var(--white); }
+    .signup-box {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .signup-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .signup-form input {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--text);
+    }
+    .signup-form input:focus { outline: 2px solid var(--teal); border-color: transparent; }
+    .signup-form input[type="email"] { grid-column: 1 / -1; }
+    .signup-form button {
+      grid-column: 1 / -1;
+      padding: 0.85rem;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: background 0.2s;
+    }
+    .signup-form button:hover { background: var(--teal); }
+    .signup-note { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      padding: 3rem 2rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-brand .logo-name { font-size: 1.25rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; margin-top: 0.75rem; color: rgba(255,255,255,0.55); }
+    .footer-brand .phone { color: var(--gold); font-weight: 600; font-size: 1rem; display: block; margin-top: 0.5rem; text-decoration: none; }
+    .footer-brand .hours { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+
+    footer h4 {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 0.5rem; }
+    footer ul a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    footer ul a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .footer-legal { font-size: 0.72rem; color: rgba(255,255,255,0.35); line-height: 1.8; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      nav { display: none; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .signup-form { grid-template-columns: 1fr; }
+      .signup-form input[type="email"] { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PROMO BANNER -->
+  <div class="promo-banner">
+    <strong>Solo Early Savings:</strong> 5% discount on new group cruise bookings made 6+ months in advance
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <span class="logo-name">The Solo Cruisers</span>
+        <span class="logo-tagline">Travel Solo, Never Alone.</span>
+      </a>
+
+      <nav>
+        <a href="#cruises">All Cruises</a>
+        <a href="#experience">Your Experience</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#testimonials">Stories</a>
+        <a href="#signup">Stay Updated</a>
+      </nav>
+
+      <div class="header-contact">
+        <a href="tel:8003935000">800-393-5000</a>
+        <span class="hours">Mon–Fri 9am–5:30pm EDT</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Travel Solo.<br /><span>Never Alone.</span></h1>
+      <p>Join a community of fun-loving single adults exploring the world together. Hosted events, curated itineraries, and friendships that last a lifetime.</p>
+      <a href="#cruises" class="btn-primary">Browse Upcoming Cruises</a>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <div class="filters-section" id="destinations">
+    <div class="filters-inner">
+      <label>Filter by:</label>
+      <select aria-label="Destination">
+        <option value="">All Destinations</option>
+        <option>Alaska</option>
+        <option>Bermuda</option>
+        <option>Caribbean</option>
+        <option>Europe</option>
+        <option>Mexican Riviera</option>
+        <option>Panama Canal</option>
+      </select>
+      <select aria-label="Travel Date">
+        <option value="">Any Date</option>
+        <option>2026 — Summer</option>
+        <option>2026 — Fall</option>
+        <option>2026 — Winter</option>
+        <option>2027 — Spring</option>
+      </select>
+      <select aria-label="Cruise Line">
+        <option value="">Any Cruise Line</option>
+        <option>Carnival</option>
+        <option>Norwegian</option>
+        <option>Royal Caribbean</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- CRUISES -->
+  <section class="cruises-section" id="cruises">
+    <div class="section-inner">
+      <p class="section-label">Upcoming Sailings</p>
+      <h2 class="section-title">Hosted Group Cruises</h2>
+      <p class="section-subtitle">Every sailing is fully hosted — our team is onboard to keep the fun going from departure to port.</p>
+
+      <div class="cruise-grid">
+
+        <div class="cruise-card">
+          <div class="cruise-card-img" style="background: linear-gradient(135deg,#0d3b5e,#1a6e8a);">
+            <span class="cruise-badge">Guaranteed Hosted</span>
+            <span class="destination-name">Alaska</span>
+          </div>
+          <div class="cruise-card-body">
+            <h3 class="cruise-card-title">Explore Alaska on NCL</h3>
+            <div class="cruise-meta">
+              <span>7 Nights</span><span>June 7, 2026</span><span>Seattle, WA</span><span>Norwegian Encore</span>
+            </div>
+          </div>
+          <div class="cruise-card-footer">
+            <div class="cruise-price">Call for Pricing<small>Included Excursion</small></div>
+            <a href="#signup" class="btn-book">Get Info</a>
+          </div>
+        </div>
+
+        <div class="cruise-card">
+          <div class="cruise-card-img" style="background: linear-gradient(135deg,#1a3a5c,#2a6e7a);">
+            <span class="cruise-badge">Guaranteed Hosted</span>
+            <span class="destination-name">Boston</span>
+          </div>
+          <div class="cruise-card-body">
+            <h3 class="cruise-card-title">4th of July in Boston</h3>
+            <div class="cruise-meta">
+              <span>7 Nights</span><span>July 5, 2026</span><span>Boston, MA</span><span>Norwegian Breakaway</span>
+            </div>
+          </div>
+          <div class="cruise-card-footer">
+            <div class="cruise-price">Call for Pricing<small>Included Excursion</small></div>
+            <a href="#signup" class="btn-book">Get Info</a>
+          </div>
+        </div>
+
+        <div class="cruise-card">
+          <div class="cruise-card-img" style="background: linear-gradient(135deg,#2d1f5e,#5a3a8a);">
+            <span class="cruise-badge">Guaranteed Hosted</span>
+            <span class="destination-name">Europe</span>
+          </div>
+          <div class="cruise-card-body">
+            <h3 class="cruise-card-title">Solar Eclipse in Spain</h3>
+            <div class="cruise-meta">
+              <span>9 Nights</span><span>Aug 7, 2026</span><span>Southampton, UK</span><span>RC Liberty of the Seas</span>
+            </div>
+          </div>
+          <div class="cruise-card-footer">
+            <div class="cruise-price">Call for Pricing<small>Included Excursion</small></div>
+            <a href="#signup" class="btn-book">Get Info</a>
+          </div>
+        </div>
+
+        <div class="cruise-card">
+          <div class="cruise-card-img" style="background: linear-gradient(135deg,#3d1f0d,#8a4a1a);">
+            <span class="cruise-badge">Guaranteed Hosted</span>
+            <span class="destination-name">Caribbean</span>
+          </div>
+          <div class="cruise-card-body">
+            <h3 class="cruise-card-title">Halloween Caribbean</h3>
+            <div class="cruise-meta">
+              <span>7 Nights</span><span>Oct 25, 2026</span><span>Miami, FL</span><span>RC Allure of the Seas</span>
+            </div>
+          </div>
+          <div class="cruise-card-footer">
+            <div class="cruise-price">From $1,039<small>Included Excursion</small></div>
+            <a href="#signup" class="btn-book">Get Info</a>
+          </div>
+        </div>
+
+        <div class="cruise-card">
+          <div class="cruise-card-img" style="background: linear-gradient(135deg,#0d2e1f,#1a6e4a);">
+            <span class="cruise-badge">Guaranteed Hosted</span>
+            <span class="destination-name">Caribbean</span>
+          </div>
+          <div class="cruise-card-body">
+            <h3 class="cruise-card-title">After Thanksgiving Caribbean</h3>
+            <div class="cruise-meta">
+              <span>7 Nights</span><span>Nov 28, 2026</span><span>Tampa, FL</span><span>RC Radiance of the Seas</span>
+            </div>
+          </div>
+          <div class="cruise-card-footer">
+            <div class="cruise-price">From $807<small>Included Excursion</small></div>
+            <a href="#signup" class="btn-book">Get Info</a>
+          </div>
+        </div>
+
+        <div class="cruise-card">
+          <div class="cruise-card-img" style="background: linear-gradient(135deg,#0d1f3c,#1a3460);">
+            <span class="cruise-badge">Guaranteed Hosted</span>
+            <span class="destination-name">Caribbean</span>
+          </div>
+          <div class="cruise-card-body">
+            <h3 class="cruise-card-title">Caribbean Christmas &amp; New Year's</h3>
+            <div class="cruise-meta">
+              <span>12 Nights</span><span>Dec 23, 2026</span><span>Miami, FL</span><span>Norwegian Jewel</span>
+            </div>
+          </div>
+          <div class="cruise-card-footer">
+            <div class="cruise-price">From $1,978<small>Included Excursion</small></div>
+            <a href="#signup" class="btn-book">Get Info</a>
+          </div>
+        </div>
+
+        <div class="cruise-card">
+          <div class="cruise-card-img" style="background: linear-gradient(135deg,#1a3a0d,#4a8a1a);">
+            <span class="cruise-badge">Guaranteed Hosted</span>
+            <span class="destination-name">Mexican Riviera</span>
+          </div>
+          <div class="cruise-card-body">
+            <h3 class="cruise-card-title">Overnights in Cabo</h3>
+            <div class="cruise-meta">
+              <span>7 Nights</span><span>Jan 15, 2027</span><span>Los Angeles, CA</span><span>RC Ovation of the Seas</span>
+            </div>
+          </div>
+          <div class="cruise-card-footer">
+            <div class="cruise-price">From $628<small>Included Excursion</small></div>
+            <a href="#signup" class="btn-book">Get Info</a>
+          </div>
+        </div>
+
+        <div class="cruise-card">
+          <div class="cruise-card-img" style="background: linear-gradient(135deg,#3d0d2e,#8a1a5a);">
+            <span class="cruise-badge">Guaranteed Hosted</span>
+            <span class="destination-name">Caribbean</span>
+          </div>
+          <div class="cruise-card-body">
+            <h3 class="cruise-card-title">Valentine's Day &amp; The Big Game</h3>
+            <div class="cruise-meta">
+              <span>7 Nights</span><span>Feb 14, 2027</span><span>New Orleans, LA</span><span>Norwegian Breakaway</span>
+            </div>
+          </div>
+          <div class="cruise-card-footer">
+            <div class="cruise-price">From $902<small>Included Excursion</small></div>
+            <a href="#signup" class="btn-book">Get Info</a>
+          </div>
+        </div>
+
+        <div class="cruise-card">
+          <div class="cruise-card-img" style="background: linear-gradient(135deg,#0d1a3d,#0e5a7a);">
+            <span class="cruise-badge">Guaranteed Hosted</span>
+            <span class="destination-name">Panama Canal</span>
+          </div>
+          <div class="cruise-card-body">
+            <h3 class="cruise-card-title">Full Transit Panama Canal</h3>
+            <div class="cruise-meta">
+              <span>15 Nights</span><span>Apr 21, 2027</span><span>Miami, FL</span><span>Norwegian Joy</span>
+            </div>
+          </div>
+          <div class="cruise-card-footer">
+            <div class="cruise-price">From $2,334<small>Included Excursion</small></div>
+            <a href="#signup" class="btn-book">Get Info</a>
+          </div>
+        </div>
+
+      </div>
+
+      <p style="text-align:center; margin-top:2rem; font-size:0.9rem; color:var(--text-muted);">
+        Need hotel or airfare add-ons? Call our help desk at <strong>877-485-5313</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section" id="experience">
+    <div class="section-inner">
+      <p class="section-label">The Solo Cruisers Difference</p>
+      <h2 class="section-title">With Us, You'll Enjoy</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.6)">This isn't a traditional cruise. It's a curated community experience designed for single adults who love to travel.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🛳️</span>
+          <h3>All-Inclusive Experience</h3>
+          <p>Lodging, food, and onboard entertainment all covered. Show up, relax, and enjoy.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎉</span>
+          <h3>Hosted Onboard Events</h3>
+          <p>Cocktail mixers, theme parties, dance lessons, karaoke, speed meeting, trivia and more — every night.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🙋</span>
+          <h3>Friendly Onboard Hosts</h3>
+          <p>Our dedicated team is with you every step of the way to make your experience perfect.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🌊</span>
+          <h3>Optional Shore Excursions</h3>
+          <p>Zipline through rainforests, explore hidden waterfalls, or snorkel vibrant ocean reefs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <div class="cta-strip">
+    <h2>Stop Dreaming. Start Packing.</h2>
+    <p>You want to see the world. We've got the crew to do it with. What are you waiting for?</p>
+    <a href="#cruises" class="btn-cta">View All Cruises</a>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="section-inner">
+      <p class="section-label">Real Solo Cruisers</p>
+      <h2 class="section-title">Stories From Our Community</h2>
+      <p class="section-subtitle">The friendships, the memories, the love stories — it all starts on the ship.</p>
+
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"This was the best vacation I have ever taken. Ultimate relaxation and the greatest seven days of my life."</p>
+          <span class="testimonial-author">— DeeAnn</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"To all asking 'should I do this?' YES — but beware, it is habit forming in the best way. This is my fifth cruise!"</p>
+          <span class="testimonial-author">— Joni</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"I met my fiancée Trish on that cruise. We are so grateful for The Solo Cruisers."</p>
+          <span class="testimonial-author">— Jason</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"We started talking on the last day of our cruise and we recently got married — wedding on a yacht in Newport Beach!"</p>
+          <span class="testimonial-author">— Annie</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"I've met over a thousand singles in less than two years. It truly feels like a giant family reunion every time."</p>
+          <span class="testimonial-author">— Chuck</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"My Mediterranean voyage was beyond words. The people I met became lifelong friends."</p>
+          <span class="testimonial-author">— Susan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL SIGNUP -->
+  <section class="signup-section" id="signup">
+    <div class="section-inner">
+      <div class="signup-box">
+        <p class="section-label">Stay in the Loop</p>
+        <h2 class="section-title">Get Cruise Deals First</h2>
+        <p class="section-subtitle" style="margin-bottom:0">Be the first to know about new sailings, early savings, and last-minute deals.</p>
+        <form class="signup-form" onsubmit="return false;">
+          <input type="text" placeholder="First Name" autocomplete="given-name" />
+          <input type="text" placeholder="Last Name" autocomplete="family-name" />
+          <input type="email" placeholder="Email Address" autocomplete="email" />
+          <button type="submit">Sign Me Up!</button>
+        </form>
+        <p class="signup-note">We respect your privacy. Unsubscribe anytime. No spam, ever.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-name" style="font-family:'Playfair Display',serif;color:#fff;">The Solo Cruisers</span>
+          <p>The premier solo cruise company for single adults who want to see the world alongside fun, like-minded travelers. Travel solo — never alone.</p>
+          <a href="tel:8003935000" class="phone">800-393-5000</a>
+          <span class="hours">Mon–Fri · 9:00am – 5:30pm EDT</span>
+        </div>
+
+        <div>
+          <h4>Destinations</h4>
+          <ul>
+            <li><a href="#cruises">Alaska</a></li>
+            <li><a href="#cruises">Bermuda</a></li>
+            <li><a href="#cruises">Caribbean</a></li>
+            <li><a href="#cruises">Europe</a></li>
+            <li><a href="#cruises">Mexican Riviera</a></li>
+            <li><a href="#cruises">Panama Canal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Cruise Lines</h4>
+          <ul>
+            <li><a href="#cruises">Carnival</a></li>
+            <li><a href="#cruises">Norwegian</a></li>
+            <li><a href="#cruises">Royal Caribbean</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#experience">Your Experience</a></li>
+            <li><a href="#testimonials">Stories</a></li>
+            <li><a href="#signup">Newsletter</a></li>
+            <li><a href="#signup">Contact Us</a></li>
+            <li><a href="#">Travel Agents</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          ©2026 The Solo Cruisers. All Rights Reserved.<br />
+          Florida Seller of Travel Reg. No. ST37304 · California CST 2096145-50 · WA/UBI 602-864-630
+        </div>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Modern Slavery Statement</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
 </html>
