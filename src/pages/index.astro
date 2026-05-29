@@ -35,12 +35,12 @@ const story = [
 ];
 
 const cruises = [
-  { title: "Explore Alaska on NCL", nights: "7 Nights", date: "Jun 7, 2026", port: "Seattle, WA", ship: "Norwegian Encore", price: "Call for Pricing", destination: "Alaska", img: "https://images.unsplash.com/photo-1516815231560-8f41ec531527?auto=format&fit=crop&w=800&q=80" },
-  { title: "Solar Eclipse in Spain", nights: "9 Nights", date: "Aug 7, 2026", port: "Southampton, UK", ship: "Liberty of the Seas", price: "Call for Pricing", destination: "Europe", img: "https://images.unsplash.com/photo-1533929736458-ca588d08c8be?auto=format&fit=crop&w=800&q=80" },
-  { title: "Halloween Caribbean", nights: "7 Nights", date: "Oct 25, 2026", port: "Miami, FL", ship: "Allure of the Seas", price: "From $1,039", destination: "Caribbean", img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80" },
-  { title: "Caribbean Christmas & New Year's", nights: "12 Nights", date: "Dec 23, 2026", port: "Miami, FL", ship: "Norwegian Jewel", price: "From $1,978", destination: "Caribbean", img: "https://images.unsplash.com/photo-1559494007-9f5847c49d94?auto=format&fit=crop&w=800&q=80" },
-  { title: "Overnights in Cabo", nights: "7 Nights", date: "Jan 15, 2027", port: "Los Angeles, CA", ship: "Ovation of the Seas", price: "From $628", destination: "Mexican Riviera", img: "https://images.unsplash.com/photo-1552074284-5e88ef1aef18?auto=format&fit=crop&w=800&q=80" },
-  { title: "Full Transit Panama Canal", nights: "15 Nights", date: "Apr 21, 2027", port: "Miami, FL", ship: "Norwegian Joy", price: "From $2,334", destination: "Panama Canal", img: "https://images.unsplash.com/photo-1473625247510-8ceb1760943f?auto=format&fit=crop&w=800&q=80" },
+  { title: "Explore Alaska on NCL", nights: "7 Nights", date: "Jun 7, 2026", port: "Seattle, WA", ship: "Norwegian Encore", price: "Call for Pricing", destination: "Alaska", img: "/api/photo?q=Alaska+glacier+cruise&orientation=landscape" },
+  { title: "Solar Eclipse in Spain", nights: "9 Nights", date: "Aug 7, 2026", port: "Southampton, UK", ship: "Liberty of the Seas", price: "Call for Pricing", destination: "Europe", img: "/api/photo?q=Mediterranean+coast+Spain&orientation=landscape" },
+  { title: "Halloween Caribbean", nights: "7 Nights", date: "Oct 25, 2026", port: "Miami, FL", ship: "Allure of the Seas", price: "From $1,039", destination: "Caribbean", img: "/api/photo?q=Caribbean+beach+turquoise+water&orientation=landscape" },
+  { title: "Caribbean Christmas & New Year's", nights: "12 Nights", date: "Dec 23, 2026", port: "Miami, FL", ship: "Norwegian Jewel", price: "From $1,978", destination: "Caribbean", img: "/api/photo?q=Caribbean+island+palm+beach&orientation=landscape" },
+  { title: "Overnights in Cabo", nights: "7 Nights", date: "Jan 15, 2027", port: "Los Angeles, CA", ship: "Ovation of the Seas", price: "From $628", destination: "Mexican Riviera", img: "/api/photo?q=Cabo+San+Lucas+beach&orientation=landscape" },
+  { title: "Full Transit Panama Canal", nights: "15 Nights", date: "Apr 21, 2027", port: "Miami, FL", ship: "Norwegian Joy", price: "From $2,334", destination: "Panama Canal", img: "/api/photo?q=Panama+Canal+ship&orientation=landscape" },
 ];
 
 const stats = [
@@ -123,7 +123,7 @@ const testimonials = [
 
     /* ── HERO ── */
     .hero { position: relative; min-height: 92vh; margin-top: -88px; display: flex; align-items: center; overflow: hidden; }
-    .hero-img { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=2000&q=80') center/cover; animation: kenburns 22s ease-out infinite alternate; }
+    .hero-img { position: absolute; inset: 0; background: url('/api/photo?q=cruise+ship+ocean+sunset&orientation=landscape') center/cover; animation: kenburns 22s ease-out infinite alternate; }
     @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.12); } }
     .hero-veil { position: absolute; inset: 0; background: linear-gradient(110deg, rgba(20,35,59,0.78) 0%, rgba(20,35,59,0.45) 50%, rgba(20,35,59,0.25) 100%); }
     .hero-content { position: relative; max-width: 720px; padding-top: 88px; }
@@ -199,7 +199,7 @@ const testimonials = [
 
     /* ── CTA ── */
     .cta { position: relative; padding: 8rem 0; text-align: center; overflow: hidden; }
-    .cta-img { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=2000&q=80') center/cover; }
+    .cta-img { position: absolute; inset: 0; background: url('/api/photo?q=ocean+horizon+sea+sunset&orientation=landscape') center/cover; }
     .cta-veil { position: absolute; inset: 0; background: rgba(20,35,59,0.7); }
     .cta-content { position: relative; }
     .cta h2 { color: var(--cream); font-size: clamp(2.2rem, 5vw, 3.8rem); max-width: 800px; margin: 0 auto 1.2rem; }
