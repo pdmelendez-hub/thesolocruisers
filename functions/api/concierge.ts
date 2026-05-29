@@ -49,7 +49,11 @@ export const onRequestPost = async (context: any) => {
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: SYSTEM }] },
         contents,
-        generationConfig: { temperature: 0.7, maxOutputTokens: 400 },
+        generationConfig: {
+          temperature: 0.7,
+          maxOutputTokens: 600,
+          thinkingConfig: { thinkingBudget: 0 },
+        },
       }),
     });
 
