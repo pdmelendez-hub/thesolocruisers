@@ -40,7 +40,7 @@ export const onRequestPost = async (context: any) => {
       parts: [{ text: String(m.content || '').slice(0, 2000) }],
     }));
 
-    const model = env.GEMINI_MODEL || 'gemini-2.0-flash';
+    const model = env.GEMINI_MODEL || 'gemini-2.5-flash';
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`;
 
     const res = await fetch(url, {
