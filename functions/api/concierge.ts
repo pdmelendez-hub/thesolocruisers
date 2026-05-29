@@ -55,7 +55,7 @@ export const onRequestPost = async (context: any) => {
 
     if (!res.ok) {
       const detail = await res.text();
-      return json({ error: `Gemini error ${res.status}`, detail: detail.slice(0, 300) }, 502);
+      return json({ error: `Gemini error ${res.status}`, model, detail: detail.slice(0, 400) });
     }
     const data: any = await res.json();
     const reply =
@@ -63,7 +63,7 @@ export const onRequestPost = async (context: any) => {
       "I'm having trouble responding right now — please call us at 800-393-5000.";
     return json({ reply });
   } catch (err: any) {
-    return json({ error: 'Server error', detail: String(err).slice(0, 200) }, 500);
+    return json({ error: 'Server error', detail: String(err).slice(0, 300) });
   }
 };
 
