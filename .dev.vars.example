@@ -1,0 +1,6 @@
+# Local dev secrets for `npm run dev`.
+# Copy this file to `.dev.vars` (which is gitignored) and fill in real values.
+# These mirror the encrypted secrets set in the Cloudflare Pages dashboard.
+
+GEMINI_API_KEY=your-gemini-key-here
+PEXELS_API_KEY=your-pexels-key-here
