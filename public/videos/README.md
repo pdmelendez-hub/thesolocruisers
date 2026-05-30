@@ -1,99 +1,76 @@
 # Video Library — The Solo Cruisers
 
-All website videos live here. Files are stored **locally in the repo** (not on a CDN), so they ship with the deploy and have no external dependencies.
+All website videos live here. Files are stored locally in the repo (no external CDN), so they ship with the deploy and have no third-party dependencies.
 
-## ⚠️ Cloudflare hard limits (must respect)
+## ⚠️ Cloudflare hard limits
 
 | Limit | Value |
 |---|---|
-| **Max file size per asset** | **25 MiB** (~26.2 MB) |
+| Max file size per asset | **25 MiB** (~26.2 MB) |
 | Max files per deployment | 20,000 |
 | GitHub warning threshold | 50 MB |
 | GitHub hard limit per file | 100 MB |
 
-**Safe target: keep every video under 24 MB** to leave a 1 MB safety margin and avoid GitHub warnings.
+**Safe target: keep every video under 24 MB.** Run `npm run check:videos` before pushing.
 
-A guard script lives at `scripts/check-video-sizes.mjs` — run `npm run check:videos` before pushing. CI can also be wired to fail the build on oversize.
-
-## Folder layout
+## Folder layout (flat, 6 categories)
 
 ```
 public/videos/
-├── README.md                  ← you are here
-├── heroes/                    ← page hero backgrounds (wired into <video> elements)
-│   ├── home/
-│   ├── destinations/
-│   └── concierge/
-├── onboard/                   ← ship/onboard b-roll, by experience
-│   ├── scarlet-night/
-│   ├── the-galley/
-│   ├── deck-spaces/
-│   ├── solo-cabins/
-│   └── group-mixers/
-├── destinations/              ← port/region atmospheric clips
-│   ├── alaska/
-│   ├── caribbean/
-│   ├── mediterranean/
-│   ├── mexican-riviera/
-│   ├── panama-canal/
-│   └── bermuda/
-├── testimonials/              ← solo sailor stories (one folder per sailor)
-├── lifestyle/                 ← general solo travel b-roll
-└── social/                    ← cuts optimised for Instagram / TikTok
-    ├── reels-9x16/            ← vertical 1080×1920
-    └── stories-9x16/          ← vertical 1080×1920 (shorter, casual)
+├── README.md          ← you are here
+├── INVENTORY.md       ← what's in each file + attribution
+├── heroes/            ← page hero videos (wired into <video> elements)
+├── destinations/      ← port/region atmospheric b-roll
+├── onboard/           ← ship/onboard experience b-roll
+├── lifestyle/         ← general solo-travel lifestyle b-roll
+├── testimonials/      ← solo sailor stories (one file per sailor)
+└── social/            ← cuts pre-formatted for Instagram / TikTok
 ```
 
-## Recommended specs by use
+The disambiguation (which port, which ship space, which sailor) lives in the **filename**, not in another folder layer. See INVENTORY.md for the live list.
+
+## Filename conventions
+
+| Folder | Pattern | Example |
+|---|---|---|
+| `heroes/` | `hero-{page}.mp4` or `cta-{page}.mp4` | `hero-home.mp4`, `cta-home.mp4`, `hero-destinations.mp4` |
+| `destinations/` | `destinations-{topic}.mp4` | `destinations-philippines-lagoon.mp4` |
+| `onboard/` | `onboard-{topic}.mp4` (`-NN` if multiple) | `onboard-scarlet-night-01.mp4` |
+| `lifestyle/` | `lifestyle-{topic}.mp4` | `lifestyle-sunset-ocean-walk.mp4` |
+| `testimonials/` | `{sailor-name}.mp4` (+ `{sailor-name}-poster.jpg`) | `deeann.mp4` |
+| `social/` | `{platform}-{topic}.mp4` | `reel-friendships.mp4`, `story-scarlet-night.mp4` |
+
+## Recommended specs
 
 | Use | Resolution | Codec | Duration | Bitrate | Target size |
 |---|---|---|---|---|---|
-| Hero loop (landscape) | 1920×1080 | H.264 MP4 + VP9 WebM | 8–15 s | 3–4 Mbps | **6–10 MB** |
-| Hero loop (mobile/portrait alt) | 1080×1920 | H.264 MP4 | 8–15 s | 2–3 Mbps | **5–8 MB** |
+| Hero (landscape) | 1920×1080 | H.264 MP4 (+ optional VP9 WebM) | 8–15 s | 3–4 Mbps | **6–10 MB** |
 | Onboard / destination b-roll | 1920×1080 | H.264 MP4 | 15–30 s | 2–3 Mbps | **8–15 MB** |
-| Testimonial | 1920×1080 | H.264 MP4 (with audio) | 30–60 s | 1.5–2.5 Mbps | **10–20 MB** |
-| Social reel | 1080×1920 | H.264 MP4 (with audio) | 15–60 s | 2–3 Mbps | **6–18 MB** |
+| Testimonial | 1920×1080 | H.264 MP4 with audio | 30–60 s | 1.5–2.5 Mbps | **10–20 MB** |
+| Social reel (9:16) | 1080×1920 | H.264 MP4 with audio | 15–60 s | 2–3 Mbps | **6–18 MB** |
 
-Hero loops are **silent** (we set `muted` for autoplay). Testimonials/social clips keep audio.
+Hero loops are silent (`muted` for autoplay). Testimonials and social keep audio.
 
 ## Compress with ffmpeg
 
-Web-optimised H.264 MP4 (universal):
-
 ```bash
+# Silent hero loop (~10 MB, 12 s, 1080p)
 ffmpeg -i input.mov -vcodec libx264 -preset slow -crf 24 \
-       -vf "scale=1920:-2" -an -movflags +faststart -t 12 \
-       output.mp4
-```
+       -vf "scale=1920:-2" -an -movflags +faststart -t 12 output.mp4
 
-Tweaks:
-- **`-crf 24`** = visual quality knob. Raise to 26–28 for smaller files, drop to 20–22 for higher quality.
-- **`-vf "scale=1920:-2"`** = output width 1920px, height auto, even pixels.
-- **`-an`** = strip audio (use for hero loops). Remove for testimonials.
-- **`-t 12`** = cap duration to 12 seconds.
-- **`-movflags +faststart`** = puts MOOV atom at the front so the browser can start playing before fully downloaded.
-
-Add a smaller WebM (VP9) alternative for browsers that support it (Chromium, Firefox):
-
-```bash
+# Same content as smaller WebM (VP9) for browsers that support it
 ffmpeg -i input.mov -c:v libvpx-vp9 -crf 32 -b:v 0 \
        -vf "scale=1920:-2" -an -t 12 output.webm
 ```
 
-## Naming conventions
-
-| Pattern | Use |
-|---|---|
-| `main-video.mp4` + `main-video.webm` + `main-poster.jpg` | Primary hero of a page |
-| `cta-video.mp4` + `cta-poster.jpg` | Secondary hero (CTA strip / mid-page) |
-| `<topic>-01.mp4`, `<topic>-02.mp4`, … | Multiple clips in same folder (onboard, destinations) |
-| `<sailor-name>.mp4` + `<sailor-name>-poster.jpg` | Testimonial clips |
-| `<campaign>-reel.mp4` | Social reels |
+Tweaks: raise `-crf` to 26–28 for smaller files; drop to 20–22 for higher quality.
 
 ## How to add a video to the site
 
-1. Compress and rename per spec above.
-2. Drop into the correct subfolder.
-3. Run `npm run check:videos` to confirm it's under 24 MB.
-4. Reference it in markup as `/videos/<path>` (because `public/` maps to the site root).
-5. Commit, push, deploy.
+1. Compress per spec above (`< 24 MB`).
+2. Rename per filename convention.
+3. Drop into the matching folder.
+4. Run `npm run check:videos` — all green = safe to ship.
+5. Reference it as `/videos/<folder>/<filename>` in markup (the `public/` prefix maps to the site root).
+6. Add a row to `INVENTORY.md` with content + attribution.
+7. Commit, push, deploy.
