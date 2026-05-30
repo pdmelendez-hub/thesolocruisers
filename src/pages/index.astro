@@ -182,6 +182,15 @@ const testimonials = [
     .ccard-meta { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: var(--muted); margin-bottom: 1.2rem; }
     .ccard-meta span { display: inline-flex; align-items: center; gap: 0.3rem; }
     .ccard-foot { display: flex; align-items: center; justify-content: space-between; padding-top: 1.1rem; border-top: 1px solid var(--line); }
+    .port-toggle { all: unset; cursor: pointer; font-size: .78rem; color: var(--brass); margin: 0 0 0.9rem; display: inline-block; font-weight: 600; transition: color 0.2s; }
+    .port-toggle:hover { color: var(--ink); }
+    .port-toggle[aria-expanded="true"] { color: var(--ink); }
+    .port-info { background: var(--cream-deep); padding: 0.85rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.82rem; color: var(--text); line-height: 1.5; }
+    .port-info[hidden] { display: none; }
+    .port-info img.pmap { width: 100%; border-radius: 6px; margin-top: 0.6rem; display: block; }
+    .port-info .pname { font-family: 'Fraunces', serif; font-weight: 600; color: var(--ink); font-size: 0.95rem; }
+    .port-info .prating { color: var(--brass); font-weight: 600; margin-top: 0.2rem; }
+    .port-info .pskel { color: var(--muted); font-style: italic; }
     .ccard-price { font-weight: 600; color: var(--ink); font-size: 0.95rem; }
     .ccard-price small { display: block; font-size: 0.68rem; color: var(--muted); font-weight: 400; letter-spacing: 0.04em; }
     .ccard-link { font-size: 0.82rem; font-weight: 600; color: var(--brass); text-decoration: none; border-bottom: 1.5px solid transparent; transition: border-color 0.2s; }
@@ -303,6 +312,7 @@ const testimonials = [
       <nav class="nav-links">
         <a href="#story">Why Us</a>
         <a href="#cruises">Cruises</a>
+        <a href="/destinations">Destinations</a>
         <a href="#stories">Stories</a>
         <a href="#contact">Contact</a>
         <a href="#contact" class="btn-pill">Plan Your Voyage</a>
@@ -383,6 +393,8 @@ const testimonials = [
               <span>⚓ {c.port}</span>
               <span>⊹ {c.date}</span>
             </div>
+            <button class="port-toggle" data-port={c.port} aria-expanded="false">📍 About this port</button>
+            <div class="port-info" data-loaded="false" hidden></div>
             <div class="ccard-foot">
               <div class="ccard-price">{c.price}<small>{c.ship}</small></div>
               <a href="#contact" class="ccard-link">Request Info →</a>
@@ -553,6 +565,42 @@ const testimonials = [
 
     fab.addEventListener('click', openChat);
     closeBtn.addEventListener('click', closeChat);
+
+    // ── Port spotlight (Google Places + TomTom) ──
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    document.querySelectorAll('.port-toggle').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const panel = btn.nextElementSibling;
+        const open = panel.hasAttribute('hidden') === false;
+        if (open) {
+          panel.setAttribute('hidden', '');
+          btn.setAttribute('aria-expanded', 'false');
+          return;
+        }
+        panel.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        if (panel.dataset.loaded === 'true') return;
+        panel.innerHTML = '<div class="pskel">Loading port info…</div>';
+        const q = btn.dataset.port;
+        try {
+          const res = await fetch('/api/place?q=' + encodeURIComponent(q));
+          const p = await res.json();
+          let html = '';
+          if (p && !p.error) {
+            html += `<div class="pname">${esc(p.name || q)}</div>`;
+            if (p.address) html += `<div>${esc(p.address)}</div>`;
+            if (p.rating) html += `<div class="prating">★ ${Number(p.rating).toFixed(1)}${p.ratingCount ? ` · ${p.ratingCount.toLocaleString()} reviews` : ''}</div>`;
+          } else {
+            html += `<div class="pname">${esc(q)}</div><div class="pskel">Port details coming soon.</div>`;
+          }
+          html += `<img class="pmap" src="/api/map?q=${encodeURIComponent(q)}&z=8&w=480&h=240" alt="Map of ${esc(q)}" loading="lazy" onerror="this.style.display='none'" />`;
+          panel.innerHTML = html;
+          panel.dataset.loaded = 'true';
+        } catch (err) {
+          panel.innerHTML = '<div class="pskel">Could not load port info — try again later.</div>';
+        }
+      });
+    });
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();

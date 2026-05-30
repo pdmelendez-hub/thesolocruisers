@@ -1,0 +1,150 @@
+---
+const destinations = [
+  { name: "Seattle, WA",        blurb: "Gateway to Alaska — glaciers, fjords, and the Inside Passage.",      photoQ: "Seattle+Alaska+cruise",         placeQ: "Seattle WA cruise port" },
+  { name: "Southampton, UK",    blurb: "Europe's premier port for transatlantic and Mediterranean sailings.", photoQ: "Southampton+UK+harbor",         placeQ: "Southampton UK cruise port" },
+  { name: "Miami, FL",          blurb: "The cruise capital — Caribbean, Bahamas, and Panama Canal departures.", photoQ: "Miami+skyline+harbor",          placeQ: "PortMiami Miami" },
+  { name: "Tampa, FL",          blurb: "Gulf Coast embarkation for Western Caribbean adventures.",            photoQ: "Tampa+Florida+waterfront",      placeQ: "Port Tampa Bay" },
+  { name: "Los Angeles, CA",    blurb: "California departures heading down the Mexican Riviera.",             photoQ: "Los+Angeles+harbor+cruise",     placeQ: "Port of Los Angeles" },
+  { name: "Cabo San Lucas, MX", blurb: "Stunning arches, golden beaches, vibrant nightlife.",                 photoQ: "Cabo+San+Lucas+arch",           placeQ: "Cabo San Lucas Mexico" },
+  { name: "Cozumel, Mexico",    blurb: "Mayan ruins, world-class diving, turquoise water.",                   photoQ: "Cozumel+Mexico+beach",          placeQ: "Cozumel Mexico" },
+  { name: "Nassau, Bahamas",    blurb: "Pastel colonial streets and pink-sand beaches.",                      photoQ: "Nassau+Bahamas+beach",          placeQ: "Nassau Bahamas" },
+  { name: "Juneau, Alaska",     blurb: "Mendenhall Glacier, whale watching, true wilderness.",                photoQ: "Juneau+Alaska+glacier",         placeQ: "Juneau Alaska" },
+  { name: "Panama Canal",       blurb: "An engineering marvel — locks, rainforest, two oceans in one day.",   photoQ: "Panama+Canal+ship+locks",       placeQ: "Panama Canal" },
+];
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Destinations — The Solo Cruisers</title>
+  <meta name="description" content="Every port we sail — from Alaska's glaciers to the Mediterranean coast — with maps, ratings, and what to expect." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ink:#14233b; --cream:#faf6ef; --cream-deep:#f1e9dc; --brass:#b8893f; --brass-light:#c8a14e; --ocean:#2c7a8c; --text:#2a2a28; --muted:#6f6f68; --line:#e3dccf; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; color: var(--ink); line-height: 1.15; }
+    a { color: inherit; }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
+
+    /* Nav */
+    .nav { padding: 1.2rem 0; border-bottom: 1px solid var(--line); background: var(--cream); position: sticky; top: 0; z-index: 50; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; flex-direction: column; line-height: 1.05; text-decoration: none; }
+    .brand-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.4rem; color: var(--ink); }
+    .brand-tag { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass); margin-top: 2px; }
+    .nav-back { font-size: 0.9rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; color: var(--ink); }
+    .nav-back:hover { color: var(--brass); }
+
+    /* Header */
+    header.head { padding: 5rem 0 3rem; text-align: center; }
+    header.head .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brass); margin-bottom: 1rem; }
+    header.head h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); margin-bottom: 1rem; }
+    header.head h1 em { font-style: italic; color: var(--brass); }
+    header.head p { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+    /* Grid */
+    .dgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 2rem; padding-bottom: 6rem; }
+    .dcard { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; }
+    .dcard:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(20,35,59,0.12); }
+    .dcard .hero { height: 200px; overflow: hidden; position: relative; }
+    .dcard .hero img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .dcard:hover .hero img { transform: scale(1.05); }
+    .dcard .body { padding: 1.3rem; }
+    .dcard h3 { font-family: 'Fraunces', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .dcard .blurb { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.55; }
+    .dcard .map { width: 100%; border-radius: 6px; margin-bottom: 0.9rem; display: block; background: var(--cream-deep); }
+    .dcard .meta { font-size: 0.82rem; color: var(--text); padding-top: 0.7rem; border-top: 1px solid var(--line); display: grid; gap: 0.25rem; }
+    .dcard .meta .pname { font-weight: 600; color: var(--ink); }
+    .dcard .meta .prating { color: var(--brass); font-weight: 600; }
+    .dcard .meta .pskel { color: var(--muted); font-style: italic; }
+    .dcard .meta .paddr { color: var(--muted); }
+    .dcard .cta { margin-top: 0.9rem; }
+    .dcard .cta a { display: inline-block; background: var(--brass); color: #fff; font-size: 0.78rem; font-weight: 600; padding: 0.5rem 1rem; border-radius: 50px; text-decoration: none; transition: background 0.2s; }
+    .dcard .cta a:hover { background: var(--ink); }
+
+    /* Footer */
+    footer { background: var(--ink); color: rgba(255,255,255,0.6); padding: 2.5rem 0; font-size: 0.85rem; text-align: center; }
+    footer a { color: var(--brass-light); text-decoration: none; }
+
+    @media (max-width: 600px) { .wrap { padding: 0 1.4rem; } header.head { padding: 3rem 0 2rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="brand">
+      <span class="brand-name">The Solo Cruisers</span>
+      <span class="brand-tag">Sail Solo, Explore Together</span>
+    </a>
+    <a href="/" class="nav-back">← Back to home</a>
+  </div>
+</nav>
+
+<header class="head wrap">
+  <div class="eyebrow">Where we sail</div>
+  <h1>Destinations <em>worth crossing oceans for</em></h1>
+  <p>Every port we visit — with ratings, addresses, and live maps powered by Google Places &amp; TomTom.</p>
+</header>
+
+<main class="wrap">
+  <div class="dgrid">
+    {destinations.map((d) => (
+      <article class="dcard" data-place={d.placeQ}>
+        <div class="hero"><img src={`/api/photo?q=${d.photoQ}&orientation=landscape`} alt={d.name} loading="lazy" /></div>
+        <div class="body">
+          <h3>{d.name}</h3>
+          <p class="blurb">{d.blurb}</p>
+          <img class="map" src={`/api/map?q=${encodeURIComponent(d.placeQ)}&z=7&w=520&h=200`} alt={`Map of ${d.name}`} loading="lazy" onerror="this.style.display='none'" />
+          <div class="meta" data-loaded="false">
+            <div class="pskel">Loading port info…</div>
+          </div>
+          <div class="cta"><a href={`/#cruises`}>View sailings →</a></div>
+        </div>
+      </article>
+    ))}
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">©2026 The Solo Cruisers · <a href="/">Back to home</a> · <a href="tel:8003935000">800-393-5000</a></div>
+</footer>
+
+<script>
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  // Lazy-load place info per card as it enters the viewport
+  const io = new IntersectionObserver(async (entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      const card = e.target;
+      io.unobserve(card);
+      const meta = card.querySelector('.meta');
+      if (meta.dataset.loaded === 'true') continue;
+      const q = card.dataset.place;
+      try {
+        const r = await fetch('/api/place?q=' + encodeURIComponent(q));
+        const p = await r.json();
+        let html = '';
+        if (p && !p.error) {
+          html += `<div class="pname">${esc(p.name || q)}</div>`;
+          if (p.address) html += `<div class="paddr">${esc(p.address)}</div>`;
+          if (p.rating) html += `<div class="prating">★ ${Number(p.rating).toFixed(1)}${p.ratingCount ? ` · ${p.ratingCount.toLocaleString()} reviews` : ''}</div>`;
+        } else {
+          html = `<div class="pskel">Port details unavailable.</div>`;
+        }
+        meta.innerHTML = html;
+        meta.dataset.loaded = 'true';
+      } catch {
+        meta.innerHTML = `<div class="pskel">Could not load port info.</div>`;
+      }
+    }
+  }, { rootMargin: '120px' });
+  document.querySelectorAll('.dcard').forEach((c) => io.observe(c));
+</script>
+
+</body>
+</html>
