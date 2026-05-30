@@ -16,8 +16,8 @@ export const onRequestGet = async (context: any) => {
   });
   if (!r.ok) {
     const detail = await r.text();
-    return new Response(JSON.stringify({ error: `pexels ${r.status}`, detail: detail.slice(0, 300) }), {
-      status: 502,
+    return new Response(JSON.stringify({ error: `pexels ${r.status}`, id, detail: detail.slice(0, 300) }), {
+      status: 200,
       headers: { 'content-type': 'application/json' },
     });
   }
