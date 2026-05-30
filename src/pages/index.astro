@@ -123,8 +123,14 @@ const testimonials = [
 
     /* ── HERO ── */
     .hero { position: relative; min-height: 92vh; margin-top: -88px; display: flex; align-items: center; overflow: hidden; }
-    .hero-img { position: absolute; inset: 0; background: url('/api/photo?q=cruise+ship+ocean+sunset&orientation=landscape') center/cover; animation: kenburns 22s ease-out infinite alternate; }
-    @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.12); } }
+    /* Hero / CTA cinematic media — uses local /heroes/{page}/ video when present, falls back to the poster (Pexels via /api/photo) */
+    .hero-video, .cta-video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center; z-index: 0;
+      background: var(--ink) center/cover no-repeat;
+    }
+    .hero-video { background-image: url('/api/photo?q=cruise+ship+ocean+sunset&orientation=landscape'); }
+    .cta-video { background-image: url('/api/photo?q=ocean+horizon+sea+sunset&orientation=landscape'); }
     .hero-veil { position: absolute; inset: 0; background: linear-gradient(110deg, rgba(20,35,59,0.78) 0%, rgba(20,35,59,0.45) 50%, rgba(20,35,59,0.25) 100%); }
     .hero-content { position: relative; max-width: 720px; padding-top: 88px; }
     .hero .eyebrow { color: var(--brass-light); }
@@ -132,8 +138,9 @@ const testimonials = [
     .hero h1 em { font-style: italic; color: var(--brass-light); }
     .hero p { color: rgba(255,255,255,0.88); font-size: 1.2rem; max-width: 540px; margin: 1.6rem 0 2.4rem; }
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-    .btn-solid { background: var(--brass); color: var(--white); padding: 0.95rem 2.2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background 0.25s, transform 0.25s; }
-    .btn-solid:hover { background: var(--brass-light); transform: translateY(-2px); }
+    /* Flagship CTAs use OTGG-family teal (gold reserved for emblem/accents) */
+    .btn-solid { background: #1f95a6; color: var(--white); padding: 0.95rem 2.2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background 0.25s, transform 0.25s, box-shadow 0.25s; box-shadow: 0 8px 24px rgba(31,149,166,0.32); }
+    .btn-solid:hover { background: #2aa6b8; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(31,149,166,0.4); }
     .btn-ghost { color: var(--cream); text-decoration: none; font-weight: 600; font-size: 0.95rem; padding: 0.95rem 1rem; border-bottom: 1.5px solid transparent; transition: border-color 0.25s; }
     .btn-ghost:hover { border-color: var(--brass-light); }
     .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
@@ -208,7 +215,7 @@ const testimonials = [
 
     /* ── CTA ── */
     .cta { position: relative; padding: 8rem 0; text-align: center; overflow: hidden; }
-    .cta-img { position: absolute; inset: 0; background: url('/api/photo?q=ocean+horizon+sea+sunset&orientation=landscape') center/cover; }
+    /* .cta-video styles merged with .hero-video above */
     .cta-veil { position: absolute; inset: 0; background: rgba(20,35,59,0.7); }
     .cta-content { position: relative; }
     .cta h2 { color: var(--cream); font-size: clamp(2.2rem, 5vw, 3.8rem); max-width: 800px; margin: 0 auto 1.2rem; }
@@ -253,7 +260,7 @@ const testimonials = [
     }
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
-      .hero-img { animation: none; }
+      .hero-video, .cta-video { animation: none; }
       .scroll-hint span { animation: none; }
     }
 
@@ -322,7 +329,11 @@ const testimonials = [
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-img"></div>
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+      poster="/api/photo?q=cruise+ship+ocean+sunset&orientation=landscape">
+      <source src="/heroes/home/main-video.webm" type="video/webm" />
+      <source src="/heroes/home/main-video.mp4" type="video/mp4" />
+    </video>
     <div class="hero-veil"></div>
     <div class="wrap hero-content">
       <p class="eyebrow">Hosted cruises for solo travelers</p>
@@ -428,7 +439,11 @@ const testimonials = [
 
   <!-- CTA -->
   <section class="cta" id="contact">
-    <div class="cta-img"></div>
+    <video class="cta-video" autoplay muted loop playsinline preload="metadata"
+      poster="/api/photo?q=ocean+horizon+sea+sunset&orientation=landscape">
+      <source src="/heroes/home/cta-video.webm" type="video/webm" />
+      <source src="/heroes/home/cta-video.mp4" type="video/mp4" />
+    </video>
     <div class="cta-veil"></div>
     <div class="wrap cta-content reveal">
       <h2>Stop dreaming.<br /><em>Start packing.</em></h2>
