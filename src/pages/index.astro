@@ -35,12 +35,12 @@ const story = [
 ];
 
 const cruises = [
-  { title: "Explore Alaska on NCL", nights: "7 Nights", date: "Jun 7, 2026", port: "Seattle, WA", ship: "Norwegian Encore", price: "Call for Pricing", destination: "Alaska", img: "/api/photo?q=Alaska+glacier+cruise&orientation=landscape" },
-  { title: "Solar Eclipse in Spain", nights: "9 Nights", date: "Aug 7, 2026", port: "Southampton, UK", ship: "Liberty of the Seas", price: "Call for Pricing", destination: "Europe", img: "/api/photo?q=Mediterranean+coast+Spain&orientation=landscape" },
-  { title: "Halloween Caribbean", nights: "7 Nights", date: "Oct 25, 2026", port: "Miami, FL", ship: "Allure of the Seas", price: "From $1,039", destination: "Caribbean", img: "/api/photo?q=Caribbean+beach+turquoise+water&orientation=landscape" },
-  { title: "Caribbean Christmas & New Year's", nights: "12 Nights", date: "Dec 23, 2026", port: "Miami, FL", ship: "Norwegian Jewel", price: "From $1,978", destination: "Caribbean", img: "/api/photo?q=Caribbean+island+palm+beach&orientation=landscape" },
-  { title: "Overnights in Cabo", nights: "7 Nights", date: "Jan 15, 2027", port: "Los Angeles, CA", ship: "Ovation of the Seas", price: "From $628", destination: "Mexican Riviera", img: "/api/photo?q=Cabo+San+Lucas+beach&orientation=landscape" },
-  { title: "Full Transit Panama Canal", nights: "15 Nights", date: "Apr 21, 2027", port: "Miami, FL", ship: "Norwegian Joy", price: "From $2,334", destination: "Panama Canal", img: "/api/photo?q=Panama+Canal+ship&orientation=landscape" },
+  { title: "Explore Alaska on NCL", nights: "7 Nights", date: "Jun 7, 2026", port: "Seattle, WA", ship: "Norwegian Encore", price: "Call for Pricing", destination: "Alaska", img: "/api/photo?q=Alaska+glacier+cruise&orientation=landscape", vibe: "The Lore-Builder", independence: 40 },
+  { title: "Solar Eclipse in Spain", nights: "9 Nights", date: "Aug 7, 2026", port: "Southampton, UK", ship: "Liberty of the Seas", price: "Call for Pricing", destination: "Europe", img: "/api/photo?q=Mediterranean+coast+Spain&orientation=landscape", vibe: "High-Social Mixer", independence: 60 },
+  { title: "Halloween Caribbean", nights: "7 Nights", date: "Oct 25, 2026", port: "Miami, FL", ship: "Allure of the Seas", price: "From $1,039", destination: "Caribbean", img: "/api/photo?q=Caribbean+beach+turquoise+water&orientation=landscape", vibe: "High-Social Mixer", independence: 70 },
+  { title: "Caribbean Christmas & New Year's", nights: "12 Nights", date: "Dec 23, 2026", port: "Miami, FL", ship: "Norwegian Jewel", price: "From $1,978", destination: "Caribbean", img: "/api/photo?q=Caribbean+island+palm+beach&orientation=landscape", vibe: "Main Character Energy", independence: 30 },
+  { title: "Overnights in Cabo", nights: "7 Nights", date: "Jan 15, 2027", port: "Los Angeles, CA", ship: "Ovation of the Seas", price: "From $628", destination: "Mexican Riviera", img: "/api/photo?q=Cabo+San+Lucas+beach&orientation=landscape", vibe: "High-Social Mixer", independence: 50 },
+  { title: "Full Transit Panama Canal", nights: "15 Nights", date: "Apr 21, 2027", port: "Miami, FL", ship: "Norwegian Joy", price: "From $2,334", destination: "Panama Canal", img: "/api/photo?q=Panama+Canal+ship&orientation=landscape", vibe: "The Lore-Builder", independence: 45 },
 ];
 
 const stats = [
@@ -180,12 +180,23 @@ const testimonials = [
     .cruise-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px,1fr)); gap: 2rem; }
     .ccard { background: var(--white); border-radius: 6px; overflow: hidden; box-shadow: 0 1px 2px rgba(20,35,59,0.06); transition: transform 0.35s, box-shadow 0.35s; }
     .ccard:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(20,35,59,0.14); }
-    .ccard-media { position: relative; height: 230px; overflow: hidden; }
+    .ccard-media { position: relative; height: 230px; overflow: hidden; background: var(--ink); }
     .ccard-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
-    .ccard:hover .ccard-media img { transform: scale(1.06); }
-    .ccard-tag { position: absolute; top: 1rem; left: 1rem; background: rgba(250,246,239,0.92); color: var(--ink); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 50px; }
+    .ccard-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s; }
+    .ccard:hover .ccard-media img { transform: scale(1.06); opacity: 0; }
+    .ccard:hover .ccard-media video { opacity: 1; }
+    .ccard-tag { position: absolute; top: 1rem; left: 1rem; background: rgba(250,246,239,0.92); color: var(--ink); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 50px; z-index: 10; }
+    .vibe-tag { position: absolute; top: 1rem; right: 1rem; background: var(--ink); color: var(--brass-light); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 4px; z-index: 10; letter-spacing: 0.05em; }
     .ccard-body { padding: 1.5rem; }
     .ccard-body h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+    
+    /* Independence Meter */
+    .meter-wrap { margin-bottom: 1.4rem; }
+    .meter-label { display: flex; justify-content: space-between; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.5rem; }
+    .meter-bar { height: 4px; background: var(--line); border-radius: 10px; position: relative; overflow: hidden; }
+    .meter-fill { height: 100%; background: #1f95a6; border-radius: 10px; transition: width 1s cubic-bezier(0.16,1,0.3,1); }
+    .meter-marker { position: absolute; top: 50%; transform: translateY(-50%); width: 10px; height: 10px; background: #fff; border: 2px solid #1f95a6; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: left 1s cubic-bezier(0.16,1,0.3,1); }
+
     .ccard-meta { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: var(--muted); margin-bottom: 1.2rem; }
     .ccard-meta span { display: inline-flex; align-items: center; gap: 0.3rem; }
     .ccard-foot { display: flex; align-items: center; justify-content: space-between; padding-top: 1.1rem; border-top: 1px solid var(--line); }
@@ -320,6 +331,9 @@ const testimonials = [
         <a href="#story">Why Us</a>
         <a href="#cruises">Cruises</a>
         <a href="/destinations">Destinations</a>
+        <div class="nav-links">
+          <a href="#cruises" onclick="alert('Filtering by vibe coming soon in this prototype!')">Vibes</a>
+        </div>
         <a href="#stories">Stories</a>
         <a href="#contact">Contact</a>
         <a href="#contact" class="btn-pill">Plan Your Voyage</a>
@@ -394,11 +408,27 @@ const testimonials = [
       {cruises.map((c) => (
         <article class="ccard reveal">
           <div class="ccard-media">
+            <video muted loop playsinline preload="none" poster={c.img}>
+              <source src={`/api/video?q=${encodeURIComponent(c.port)}+cruise+port+ocean`} type="video/mp4" />
+            </video>
             <img src={c.img} alt={`${c.destination} cruise`} loading="lazy" />
             <span class="ccard-tag">{c.destination}</span>
+            <span class="vibe-tag">{c.vibe}</span>
           </div>
           <div class="ccard-body">
             <h3>{c.title}</h3>
+            
+            <div class="meter-wrap">
+              <div class="meter-label">
+                <span>Guided Social</span>
+                <span>Solo Freedom</span>
+              </div>
+              <div class="meter-bar">
+                <div class="meter-fill" style={`width: ${c.independence}%`}></div>
+                <div class="meter-marker" style={`left: ${c.independence}%`}></div>
+              </div>
+            </div>
+
             <div class="ccard-meta">
               <span>◷ {c.nights}</span>
               <span>⚓ {c.port}</span>
