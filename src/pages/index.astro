@@ -1,4 +1,17 @@
 ---
+import { readdirSync } from 'fs';
+import { join } from 'path';
+
+// ── HERO VIDEO POOL ──────────────────────────────────────────────────────────
+// Drop any .mp4 into public/videos/heroes/ and it auto-joins the rotation on
+// the next deploy. Files prefixed with "cta-" are reserved for the CTA section
+// and are excluded here. No code changes needed when adding new clips.
+const heroPool = readdirSync(join(process.cwd(), 'public/videos/heroes'))
+  .filter(f => f.endsWith('.mp4') && !f.startsWith('cta-'))
+  .sort()
+  .map(f => `/videos/heroes/${f}`);
+// ────────────────────────────────────────────────────────────────────────────
+
 const story = [
   {
     eyebrow: "Specialized Solo Guidance",
@@ -363,34 +376,28 @@ const testimonials = [
     </div>
   </header>
 
-  <!-- HERO — video is chosen randomly on each page load from the pool below -->
+  <!-- HERO — pool is auto-built at deploy time from public/videos/heroes/*.mp4
+       (excluding cta-* files). Drop a new .mp4 in that folder and it joins
+       the rotation on the next deploy — no code changes needed. -->
   <section class="hero">
     <video id="hero-vid" class="hero-video" autoplay muted loop playsinline preload="metadata"
+      data-pool={JSON.stringify(heroPool)}
       poster="/api/photo?q=cruise+ship+ocean+sunset&orientation=landscape">
-      <!-- Fallback for no-JS; JS replaces this immediately with a random pick -->
-      <source id="hero-src" src="/videos/heroes/hero-home.mp4" type="video/mp4" />
+      <!-- Fallback src (first alphabetical clip) for no-JS environments -->
+      <source id="hero-src" src={heroPool[0]} type="video/mp4" />
     </video>
     <script>
       (function () {
-        var pool = [
-          '/videos/heroes/hero-home.mp4',
-          '/videos/heroes/hero-destinations.mp4',
-          '/videos/lifestyle/lifestyle-sunset-ocean-walk.mp4',
-          '/videos/lifestyle/lifestyle-man-sea-glasses.mp4',
-          '/videos/lifestyle/lifestyle-woman-beach.mp4',
-          '/videos/lifestyle/lifestyle-surfer-sunset.mp4',
-          '/videos/destinations/destinations-beach-sunrise.mp4',
-          '/videos/destinations/destinations-philippines-lagoon.mp4',
-          '/videos/destinations/destinations-venice-gondola.mp4',
-        ];
-        var pick = pool[Math.floor(Math.random() * pool.length)];
         var vid = document.getElementById('hero-vid');
         var src = document.getElementById('hero-src');
-        if (vid && src) {
-          src.setAttribute('src', pick);
-          vid.load();
-          vid.play().catch(function () {});
-        }
+        if (!vid || !src) return;
+        var pool;
+        try { pool = JSON.parse(vid.dataset.pool); } catch (e) { return; }
+        if (!pool || pool.length < 2) return;
+        var pick = pool[Math.floor(Math.random() * pool.length)];
+        src.setAttribute('src', pick);
+        vid.load();
+        vid.play().catch(function () {});
       })();
     </script>
     <div class="hero-veil"></div>
