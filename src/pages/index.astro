@@ -363,13 +363,36 @@ const testimonials = [
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO — video is chosen randomly on each page load from the pool below -->
   <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+    <video id="hero-vid" class="hero-video" autoplay muted loop playsinline preload="metadata"
       poster="/api/photo?q=cruise+ship+ocean+sunset&orientation=landscape">
-      <source src="/videos/heroes/hero-home.webm" type="video/webm" />
-      <source src="/videos/heroes/hero-home.mp4" type="video/mp4" />
+      <!-- Fallback for no-JS; JS replaces this immediately with a random pick -->
+      <source id="hero-src" src="/videos/heroes/hero-home.mp4" type="video/mp4" />
     </video>
+    <script>
+      (function () {
+        var pool = [
+          '/videos/heroes/hero-home.mp4',
+          '/videos/heroes/hero-destinations.mp4',
+          '/videos/lifestyle/lifestyle-sunset-ocean-walk.mp4',
+          '/videos/lifestyle/lifestyle-man-sea-glasses.mp4',
+          '/videos/lifestyle/lifestyle-woman-beach.mp4',
+          '/videos/lifestyle/lifestyle-surfer-sunset.mp4',
+          '/videos/destinations/destinations-beach-sunrise.mp4',
+          '/videos/destinations/destinations-philippines-lagoon.mp4',
+          '/videos/destinations/destinations-venice-gondola.mp4',
+        ];
+        var pick = pool[Math.floor(Math.random() * pool.length)];
+        var vid = document.getElementById('hero-vid');
+        var src = document.getElementById('hero-src');
+        if (vid && src) {
+          src.setAttribute('src', pick);
+          vid.load();
+          vid.play().catch(function () {});
+        }
+      })();
+    </script>
     <div class="hero-veil"></div>
     <div class="wrap hero-content">
       <p class="eyebrow">Hosted cruises for solo travelers</p>
