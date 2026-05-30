@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-types": "wrangler types"
+    "generate-types": "wrangler types",
+    "check:videos": "node scripts/check-video-sizes.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.5",
