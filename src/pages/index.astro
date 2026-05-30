@@ -150,6 +150,24 @@ const testimonials = [
       background: var(--ink) center/cover no-repeat;
     }
     .hero-video { background-image: url('/api/photo?q=cruise+ship+ocean+sunset&orientation=landscape'); }
+
+    /* ── HERO CROSSFADE ROTATOR ── */
+    .hero-rot__poster,
+    .hero-rot__vid {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+    }
+    .hero-rot__vid {
+      opacity: 0;
+      transition: opacity 1.1s ease;
+      pointer-events: none;
+    }
+    .hero-rot__vid.is-active { opacity: 1; }
+    [data-hero-rotate].is-playing .hero-rot__poster {
+      opacity: 0;
+      transition: opacity 1.1s ease;
+    }
     .cta-video { background-image: url('/api/photo?q=ocean+horizon+sea+sunset&orientation=landscape'); }
     .hero-veil { position: absolute; inset: 0; background: linear-gradient(110deg, rgba(20,35,59,0.78) 0%, rgba(20,35,59,0.45) 50%, rgba(20,35,59,0.25) 100%); }
     .hero-content { position: relative; max-width: 720px; padding-top: 88px; }
@@ -376,28 +394,63 @@ const testimonials = [
     </div>
   </header>
 
-  <!-- HERO — pool is auto-built at deploy time from public/videos/heroes/*.mp4
-       (excluding cta-* files). Drop a new .mp4 in that folder and it joins
-       the rotation on the next deploy — no code changes needed. -->
+  <!-- HERO — videos crossfade in sequence through the full pool.
+       Pool is auto-built at deploy time from public/videos/heroes/*.mp4 (non-cta-).
+       First clip autoplays declaratively for iOS; JS crossfades the rest. -->
   <section class="hero">
-    <video id="hero-vid" class="hero-video" autoplay muted loop playsinline preload="metadata"
-      data-pool={JSON.stringify(heroPool)}
-      poster="/api/photo?q=cruise+ship+ocean+sunset&orientation=landscape">
-      <!-- Fallback src (first alphabetical clip) for no-JS environments -->
-      <source id="hero-src" src={heroPool[0]} type="video/mp4" />
-    </video>
+    <div class="hero-video" data-hero-rotate={JSON.stringify(heroPool)}>
+      <img class="hero-rot__poster"
+        src="/api/photo?q=cruise+ship+ocean+sunset&orientation=landscape"
+        fetchpriority="high" loading="eager" decoding="async" alt="" />
+      <!-- First clip autoplays declaratively — reliable iOS inline autoplay -->
+      <video class="hero-rot__vid" autoplay muted playsinline preload="auto" aria-hidden="true">
+        <source src={heroPool[0]} type="video/mp4" />
+      </video>
+      <video class="hero-rot__vid" muted playsinline preload="none" aria-hidden="true"></video>
+    </div>
     <script>
+      /* Hero crossfade rotator — same battle-tested pattern as OTGG homepage */
       (function () {
-        var vid = document.getElementById('hero-vid');
-        var src = document.getElementById('hero-src');
-        if (!vid || !src) return;
-        var pool;
-        try { pool = JSON.parse(vid.dataset.pool); } catch (e) { return; }
-        if (!pool || pool.length < 2) return;
-        var pick = pool[Math.floor(Math.random() * pool.length)];
-        src.setAttribute('src', pick);
-        vid.load();
-        vid.play().catch(function () {});
+        function init(box) {
+          var sources;
+          try { sources = JSON.parse(box.getAttribute('data-hero-rotate')); } catch (e) { return; }
+          if (!sources || !sources.length) return;
+          var vids = box.querySelectorAll('.hero-rot__vid');
+          if (vids.length < 2) return;
+          var active = vids[0], standby = vids[1], idx = 0, swapping = false;
+          [active, standby].forEach(function (v) {
+            v.muted = true; v.defaultMuted = true; v.playsInline = true;
+            v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+          });
+          function reveal() { active.classList.add('is-active'); box.classList.add('is-playing'); }
+          if (!active.paused && active.readyState >= 2) reveal();
+          active.addEventListener('playing', reveal, { once: true });
+          var k = active.play && active.play(); if (k && k.catch) k.catch(function () {});
+          function advance() {
+            if (swapping || sources.length < 2) return; swapping = true;
+            var next = (idx + 1) % sources.length;
+            standby.src = sources[next];
+            try { standby.load(); } catch (e) {}
+            var p = standby.play();
+            function go() {
+              standby.classList.add('is-active');
+              active.classList.remove('is-active');
+              var prev = active;
+              setTimeout(function () { try { prev.pause(); } catch (e) {} }, 1200);
+              var t = active; active = standby; standby = t; idx = next; swapping = false;
+              active.addEventListener('ended', advance, { once: true });
+            }
+            if (p && p.then) p.then(go).catch(function () { swapping = false; setTimeout(advance, 800); });
+            else go();
+          }
+          active.addEventListener('ended', advance, { once: true });
+        }
+        function run() {
+          var boxes = document.querySelectorAll('[data-hero-rotate]');
+          for (var i = 0; i < boxes.length; i++) init(boxes[i]);
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+        else run();
       })();
     </script>
     <div class="hero-veil"></div>
