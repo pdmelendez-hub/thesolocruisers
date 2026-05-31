@@ -1,15 +1,18 @@
 ---
-import { readdirSync } from 'fs';
-import { join } from 'path';
-
 // ── HERO VIDEO POOL ──────────────────────────────────────────────────────────
-// Drop any .mp4 into public/videos/heroes/ and it auto-joins the rotation on
-// the next deploy. Files prefixed with "cta-" are reserved for the CTA section
-// and are excluded here. No code changes needed when adding new clips.
-const heroPool = readdirSync(join(process.cwd(), 'public/videos/heroes'))
-  .filter(f => f.endsWith('.mp4') && !f.startsWith('cta-'))
-  .sort()
-  .map(f => `/videos/heroes/${f}`);
+// To add a clip: drop hero-name.mp4 into public/videos/heroes/ and add its
+// path here. To remove one, delete the line. Order = playback sequence.
+const heroPool = [
+  '/videos/heroes/hero-home.mp4',
+  '/videos/heroes/hero-beach-sunrise.mp4',
+  '/videos/heroes/hero-man-sea.mp4',
+  '/videos/heroes/hero-sunset-walk.mp4',
+  '/videos/heroes/hero-lagoon.mp4',
+  '/videos/heroes/hero-woman-beach.mp4',
+  '/videos/heroes/hero-destinations.mp4',
+  '/videos/heroes/hero-venice.mp4',
+  '/videos/heroes/hero-surfer-sunset.mp4',
+];
 // ────────────────────────────────────────────────────────────────────────────
 
 const story = [
