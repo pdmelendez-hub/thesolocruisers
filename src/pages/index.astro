@@ -51,7 +51,7 @@ const story = [
 ];
 
 const cruises = [
-  { title: "Explore Alaska on NCL", nights: "7 Nights", date: "Jun 7, 2026", port: "Seattle, WA", ship: "Norwegian Encore", price: "Call for Pricing", destination: "Alaska", img: "/api/photo?q=Alaska+glacier+cruise&orientation=landscape", vibe: "The Lore-Builder", independence: 40 },
+  { title: "Greek Isles & Turkey", nights: "10 Nights", date: "Jul 12, 2026", port: "Athens, Greece", ship: "Norwegian Jade", price: "From $1,289", destination: "Mediterranean", img: "/api/photo?q=Santorini+Greece+cruise&orientation=landscape", vibe: "The Lore-Builder", independence: 55 },
   { title: "Solar Eclipse in Spain", nights: "9 Nights", date: "Aug 7, 2026", port: "Southampton, UK", ship: "Liberty of the Seas", price: "Call for Pricing", destination: "Europe", img: "/api/photo?q=Mediterranean+coast+Spain&orientation=landscape", vibe: "High-Social Mixer", independence: 60 },
   { title: "Halloween Caribbean", nights: "7 Nights", date: "Oct 25, 2026", port: "Miami, FL", ship: "Allure of the Seas", price: "From $1,039", destination: "Caribbean", img: "/api/photo?q=Caribbean+beach+turquoise+water&orientation=landscape", vibe: "High-Social Mixer", independence: 70 },
   { title: "Caribbean Christmas & New Year's", nights: "12 Nights", date: "Dec 23, 2026", port: "Miami, FL", ship: "Norwegian Jewel", price: "From $1,978", destination: "Caribbean", img: "/api/photo?q=Caribbean+island+palm+beach&orientation=landscape", vibe: "Main Character Energy", independence: 30 },
@@ -81,9 +81,28 @@ const testimonials = [
   <meta name="generator" content={Astro.generator} />
   <title>The Solo Cruisers — Sail Solo, Explore Together.</title>
   <meta name="description" content="Hosted cruises for solo travelers. We match single adults to the right sailing, handle the logistics, and connect you with a crew before you ever board." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://thesolocruisers.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="The Solo Cruisers" />
+  <meta property="og:title" content="The Solo Cruisers — Sail Solo, Explore Together." />
+  <meta property="og:description" content="Hosted group cruises for solo travelers. Board as a stranger, disembark with lifelong friends. No single supplement surprises." />
+  <meta property="og:url" content="https://thesolocruisers.com/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&h=630&q=80" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Solo Cruisers — Sail Solo, Explore Together." />
+  <meta name="twitter:description" content="Hosted group cruises for solo travelers. Board as a stranger, disembark with lifelong friends." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&h=630&q=80" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=Poppins:wght@800&family=Pacifico&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -212,6 +231,19 @@ const testimonials = [
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
     .stat-num { font-family: 'Fraunces', serif; font-size: clamp(2.2rem, 4vw, 3.4rem); color: var(--brass-light); font-weight: 500; }
     .stat-label { font-size: 0.85rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.7); margin-top: 0.4rem; text-transform: uppercase; }
+
+    /* ── WHO THIS IS FOR ── */
+    .whos-for { background: var(--ink); color: var(--cream); padding: 6rem 0; }
+    .whos-for .section-head h2 { color: var(--cream); }
+    .whos-for .section-head p { color: rgba(255,255,255,0.65); }
+    .whos-for-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; max-width: 1240px; margin: 0 auto; padding: 0 2rem; border-top: 1px solid rgba(255,255,255,0.1); border-left: 1px solid rgba(255,255,255,0.1); }
+    .whos-card { padding: 2.2rem 1.75rem; border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; }
+    .whos-card:hover { background: rgba(255,255,255,0.04); }
+    .whos-num { font-family: 'Fraunces', serif; font-size: 2.2rem; color: var(--brass); opacity: 0.3; line-height: 1; margin-bottom: 0.75rem; }
+    .whos-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); margin-bottom: 0.6rem; }
+    .whos-desc { font-size: 0.88rem; line-height: 1.8; color: rgba(255,255,255,0.6); }
+    @media (max-width: 940px) { .whos-for-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 560px) { .whos-for-grid { grid-template-columns: 1fr; } }
 
     /* ── CRUISES ── */
     .cruises { padding: 7rem 0; }
@@ -387,11 +419,8 @@ const testimonials = [
         <a href="#story">Why Us</a>
         <a href="#cruises">Cruises</a>
         <a href="/destinations">Destinations</a>
-        <div class="nav-links">
-          <a href="#cruises" onclick="alert('Filtering by vibe coming soon in this prototype!')">Vibes</a>
-        </div>
-        <a href="#stories">Stories</a>
-        <a href="#contact">Contact</a>
+        <a href="/about">About</a>
+        <a href="/faq">FAQ</a>
         <a href="#contact" class="btn-pill">Plan Your Voyage</a>
       </nav>
     </div>
@@ -502,6 +531,36 @@ const testimonials = [
           <div class="stat-label">{s.label}</div>
         </div>
       ))}
+    </div>
+  </section>
+
+  <!-- WHO THIS IS FOR -->
+  <section class="whos-for">
+    <div class="wrap section-head reveal" style="margin-bottom:3rem;">
+      <p class="eyebrow" style="color:var(--brass-light);">Who This Is For</p>
+      <h2>You belong here<br><em style="font-style:italic;color:var(--brass-light);">if any of this sounds familiar.</em></h2>
+    </div>
+    <div class="whos-for-grid">
+      <div class="whos-card reveal">
+        <div class="whos-num">01</div>
+        <p class="whos-title">The First-Timer</p>
+        <p class="whos-desc">You've always wanted to cruise but the idea of going alone felt awkward. We take that off the table — you'll have a crew before you ever step on the ship.</p>
+      </div>
+      <div class="whos-card reveal">
+        <div class="whos-num">02</div>
+        <p class="whos-title">The Repeat Solo Traveler</p>
+        <p class="whos-desc">You travel alone all the time but you're tired of paying the single supplement. You want the community without sacrificing your independence.</p>
+      </div>
+      <div class="whos-card reveal">
+        <div class="whos-num">03</div>
+        <p class="whos-title">The Newly Single</p>
+        <p class="whos-desc">Life changed and so did your travel plans. This isn't a rebound trip — it's a reset. A chance to meet real people and remember how good it feels to explore.</p>
+      </div>
+      <div class="whos-card reveal">
+        <div class="whos-num">04</div>
+        <p class="whos-title">The Social Connector</p>
+        <p class="whos-desc">You make friends everywhere you go. You want a group that keeps up, an itinerary worth talking about, and stories that outlast the trip.</p>
+      </div>
     </div>
   </section>
 
